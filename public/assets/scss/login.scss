@@ -1,0 +1,113 @@
+@use "utils" as *;
+@use 'sass:color';
+
+$transition-duration: 0.5s;
+$car-size: 600px;
+
+
+.car-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: transparent;
+  transform: translate(-50%, -50%);
+  width: $car-size;
+  z-index: 20;
+  transition: transform $transition-duration ease-in-out;
+
+  .car-image {
+    width: 100%;
+    scale: 1.3;
+    height: auto;
+  }
+}
+
+// Button container
+
+.login-button {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  scale: 1.2;
+}
+
+.register-button {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  scale: 1.2;
+}
+
+
+// Active state for car movement
+.main-container.move-login .car-container {
+  transform: translate(50%, -50%);
+}
+
+.main-container.move-register .car-container {
+  transform: translate(-150%, -50%);
+}
+
+
+$form-width: 400px;
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: $form-width;
+  padding: 2rem;
+  background-color: $color-dark-theme;
+  border-radius: $border-2xl;
+  box-shadow: $shadow-box;
+  text-align: center;
+  z-index: 30;
+  transition: opacity $transition-duration ease-in-out;
+
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  h2 {
+    color: $color-gold;
+  }
+
+  .form-group {
+    margin: 1rem 0;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $color-white;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid $color-medium-gray;
+      border-radius: $border-2xl;
+      background-color: $color-dark-theme;
+      color: $color-white;
+    }
+  }
+
+  .submit-button{
+    scale: 0.8;
+  }
+
+}
+
+.back-button {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

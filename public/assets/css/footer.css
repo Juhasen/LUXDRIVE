@@ -1,0 +1,46 @@
+.highlight {
+  color: #e8ac3a;
+}
+
+.underline-hover {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 5px;
+  text-decoration: none;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.underline-hover:hover {
+  transform: scale(1.15);
+  transition: 300ms;
+}
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e8ac3a;
+  transition: width 0.3s ease;
+}
+.underline-hover:hover::after {
+  width: 100%;
+}
+.underline-hover.active::after {
+  width: 100%;
+  transition: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  color: #fff;
+  background-color: #000;
+  border-top: 2px solid #e8ac3a;
+}
+
+/*# sourceMappingURL=footer.css.map */

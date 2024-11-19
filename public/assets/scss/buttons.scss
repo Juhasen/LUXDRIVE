@@ -1,0 +1,36 @@
+@use "utils" as *;
+@use 'sass:color';
+
+.primary-button {
+  background-color: $color-gold;
+  color: $color-medium-gray;
+  padding: 15px 30px;
+  border: none;
+  border-radius: $border-full;
+  cursor: pointer;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: color.adjust($color-gold, $lightness: -10%);
+  }
+}
+
+.secondary-button {
+  background-color: $color-medium-gray;
+  color: $color-white;
+  padding: 15px 30px;
+  border: 2px solid $color-gold;
+  border-radius: $border-full;
+  cursor: pointer;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $color-dark-theme;
+  }
+}

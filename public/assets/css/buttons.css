@@ -1,0 +1,67 @@
+.highlight {
+  color: #e8ac3a;
+}
+
+.underline-hover {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 5px;
+  text-decoration: none;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.underline-hover:hover {
+  transform: scale(1.15);
+  transition: 300ms;
+}
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e8ac3a;
+  transition: width 0.3s ease;
+}
+.underline-hover:hover::after {
+  width: 100%;
+}
+.underline-hover.active::after {
+  width: 100%;
+  transition: none;
+}
+
+.primary-button {
+  background-color: #e8ac3a;
+  color: #2e2f2e;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+}
+.primary-button:hover {
+  background-color: rgb(214.0136363636, 148.8318181818, 24.9863636364);
+}
+
+.secondary-button {
+  background-color: #2e2f2e;
+  color: #fff;
+  padding: 15px 30px;
+  border: 2px solid #e8ac3a;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+}
+.secondary-button:hover {
+  background-color: #1b1a1a;
+}
+
+/*# sourceMappingURL=buttons.css.map */

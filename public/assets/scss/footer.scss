@@ -1,0 +1,12 @@
+@use "utils" as *;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  color: $color-white;
+  background-color: $color-black;
+  border-top: 2px solid $color-gold;
+}

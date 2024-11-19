@@ -1,0 +1,34 @@
+
+@use "main-slider";
+@use "section-cars";
+@use "section-rent-now";
+@use "buttons";
+@use "header";
+@use "footer";
+@use "login";
+@use "utils" as *;
+@use "profile";
+@use "cars";
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: $color-dark-theme;
+
+}
+
+.main-container {
+  margin-top: 100px;
+  min-height: 90vh;
+}

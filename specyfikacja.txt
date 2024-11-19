@@ -1,0 +1,7 @@
+1.logowanie/rejestracja (hasło szyfrowane, hashowane)
+2.walidacja formularzy
+3.zabezpieczanie formularzy (SQL INJECTION, cross scripting)
+4.panel administracyjny (dodaj, usuń, edytuj) (usuwanie z modalem)
+5.atrakcyjny wygląd (można gotowe template)
+6.korzystamy tylko z scss
+7. "koszyk", po zalogowaniu przypisuje się rzeczy do konta na podstawie numeru sesji (może być ulubione samochody)
