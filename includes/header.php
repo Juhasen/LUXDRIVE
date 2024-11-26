@@ -30,7 +30,6 @@ error_reporting(E_ALL);
     </nav>
 
     <div class="icons-container">
-        <img src="../public/assets/icons/search.svg" alt="search">
         <img src="../public/assets/icons/shopping_cart.svg" alt="cart">
         <a href="<?php echo $base_url; ?>?page=loginForm"> <img src="../public/assets/icons/user.svg" alt="user"></a>
     </div>

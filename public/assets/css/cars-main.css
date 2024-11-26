@@ -32,7 +32,7 @@
   transition: none;
 }
 
-.cars-container {
+.slider-container {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -72,6 +72,7 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;
   background-color: #2e2f2e;
   border-radius: 1rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -123,4 +124,4 @@
   text-align: right;
 }
 
-/*# sourceMappingURL=cars.css.map */
+/*# sourceMappingURL=cars-main.css.map */

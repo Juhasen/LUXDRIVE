@@ -8,7 +8,8 @@
 @use "login";
 @use "utils" as *;
 @use "profile";
-@use "cars";
+@use "cars-main";
+@use "cars-page";
 
 @font-face {
   font-family: 'Montserrat';

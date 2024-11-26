@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Prepare statement to fetch email, name, and hashed password
+
 $stmt = $conn->prepare("SELECT user_id, name, password FROM Users WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();

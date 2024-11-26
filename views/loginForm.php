@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id'])) {
 
 <section class="main-container">
     <div class="car-container">
-        <img src="../public/assets/images/loginFormCar.png" width="613" height="407" alt="Car" class="car-image">
+        <img src="../public/assets/images/loginFormCarV2.png" width="920" height="531" alt="Car" class="car-image">
     </div>
     <button class="login-button primary-button">Logowanie</button>
     <button class="register-button secondary-button">Rejestracja</button>
