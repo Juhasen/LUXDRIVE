@@ -8,7 +8,7 @@ function generateCarCards($result): void
 {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $gearbox = $row['gearbox_type'] == 1 ? 'Automatyczna' : 'Manual';
+            $gearbox = $row['gearbox_type'] == 1 ? 'Automat' : 'Manual';
 
             echo '
                 <div class="car-card">
@@ -34,7 +34,7 @@ function generateCarCards($result): void
                         </div>
                         <div class="car-price">
                             <button class="primary-button">Detale</button>
-                            <span class="price">' . number_format($row['price'], 2) . 'zł <small>/Doba</small></span>
+                            <span class="price">' . number_format($row['price'], 0) . 'zł <small>/Doba</small></span>
                         </div>
                     </div>
                 </div>

@@ -35,14 +35,15 @@
 .cars-container {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 60px;
   align-items: center;
-  margin-bottom: 50px;
 }
-.cars-container .car-card {
-  width: 50%;
+
+.car-card {
+  width: 25%;
   max-width: 1200px;
   height: auto;
   overflow: hidden;
@@ -53,14 +54,17 @@
   align-items: center;
   margin: 0 20px;
 }
-.cars-container .car-card .car-image {
-  width: 1200px;
-  height: 600px;
+.car-card .car-image {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  max-height: 600px;
   object-fit: cover;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
 }
-.cars-container .car-card .car-info {
+.car-card .car-info {
+  width: 95%;
   position: relative;
   bottom: 40px;
   padding: 15px 30px;
@@ -68,52 +72,51 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
-  width: 95%;
   background-color: #2e2f2e;
   border-radius: 1rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-.cars-container .car-card .car-info .car-specs {
+.car-card .car-info .car-specs {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.cars-container .car-card .car-info .car-specs .car-name {
+.car-card .car-info .car-specs .car-name {
   font-size: 1.6rem;
   font-weight: bold;
   margin: 0;
 }
-.cars-container .car-card .car-info .car-specs .car-details {
+.car-card .car-info .car-specs .car-details {
   display: flex;
   gap: 15px;
   font-size: 1.2rem;
   padding-right: 30px;
 }
-.cars-container .car-card .car-info .car-specs .car-details .detail-icon {
+.car-card .car-info .car-specs .car-details .detail-icon {
   display: flex;
   align-items: center;
   gap: 5px;
   font-weight: normal;
 }
-.cars-container .car-card .car-info .car-specs .car-details .detail-icon img {
+.car-card .car-info .car-specs .car-details .detail-icon img {
   width: 40px;
   height: 40px;
 }
-.cars-container .car-card .car-info .car-price {
+.car-card .car-info .car-price {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
   width: 30%;
 }
-.cars-container .car-card .car-info .car-price .price {
+.car-card .car-info .car-price .price {
   display: flex;
   flex-direction: column;
   font-size: 2rem;
   font-weight: bold;
   color: #e8ac3a;
 }
-.cars-container .car-card .car-info .car-price .price small {
+.car-card .car-info .car-price .price small {
   font-size: 1rem;
   font-weight: normal;
   color: #fff;

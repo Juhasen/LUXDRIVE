@@ -102,7 +102,7 @@ $result = $conn->query($sql);
     </button>
     <div class="car-slider">
         <?php
-            generateCarCards($result);
+        generateCarCards($result);
         ?>
     </div>
     <button class="slide-button next">
@@ -111,6 +111,78 @@ $result = $conn->query($sql);
 </section>
 
 <section class="section-rent-now">
-    ALe to jest jakiś tekst
+    <h2 class="h-rent-now">WYPOŻYCZ TERAZ</h2>
+    <h1 class="h-book-now">Zarezerwuj Swój Samochód</h1>
+    <form action="../controllers/process_rental.php" method="POST" class="rental-bar">
+        <div class="rental-bar-item">
+            <label for="car-type">Rodzaj samochodu</label>
+            <div class="custom-select">
+                <div class="select-wrapper">
+                    <span class="selected-option">Wybierz rodzaj</span>
+                    <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 4.5L6 10L12 4.5H0Z" fill="white"/>
+                    </svg>
+                </div>
+                <ul class="select-options">
+                    <li class="select-option" data-value="sport">Sportowy</li>
+                    <li class="select-option" data-value="suv">SUV</li>
+                    <li class="select-option" data-value="luxury">Luksusowy</li>
+                </ul>
+            </div>
+            <input type="hidden" id="car-type" name="car_type" required>
+        </div>
+
+        <div class="rental-bar-item">
+            <label for="pick-up-location">Miejsce wynajmu</label>
+            <div class="custom-select">
+                <div class="select-wrapper">
+                    <span class="selected-option">Wybierz miejsce</span>
+                    <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 4.5L6 10L12 4.5H0Z" fill="white"/>
+                    </svg>
+                </div>
+                <ul class="select-options">
+                    <li class="select-option" data-value="warsaw">Warszawa</li>
+                    <li class="select-option" data-value="krakow">Kraków</li>
+                    <li class="select-option" data-value="gdansk">Gdańsk</li>
+                </ul>
+            </div>
+            <input type="hidden" id="pick-up-location" name="pick_up_location" required>
+        </div>
+
+        <div class="rental-bar-item">
+            <label for="rental-date-start">Data Wypożyczenia</label>
+            <input type="date" id="rental-date-start" name="rental_date_start" lang="pl-PL" required>
+        </div>
+
+        <div class="rental-bar-item">
+            <label for="drop-off-location">Miejsce zwrotu</label>
+            <div class="custom-select">
+                <div class="select-wrapper">
+                    <span class="selected-option">Wybierz miejsce</span>
+                    <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 4.5L6 10L12 4.5H0Z" fill="white"/>
+                    </svg>
+                </div>
+                <ul class="select-options">
+                    <li class="select-option" data-value="warsaw">Warszawa</li>
+                    <li class="select-option" data-value="krakow">Kraków</li>
+                    <li class="select-option" data-value="gdansk">Gdańsk</li>
+                </ul>
+            </div>
+            <input type="hidden" id="drop-off-location" name="drop_off_location" required>
+        </div>
+
+        <div class="rental-bar-item">
+            <label for="rental-date-end">Data Zwrotu</label>
+            <input type="date" id="rental-date-end" name="rental_date_end" lang="pl-PL" required>
+        </div>
+
+        <button class="primary-button" type="submit">Wypożycz Teraz</button>
+    </form>
+</section>
+
+<section style="height: 50vh">
+
 </section>
 

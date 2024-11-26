@@ -4,5 +4,6 @@
 <script src="../public/main-slider.js" defer></script>
 <script src="../public/car-slider.js" defer></script>
 <script src="../public/login-register.js" defer></script>
+<script src="../public/rent-now.js" defer></script>
 </body>
 </html>

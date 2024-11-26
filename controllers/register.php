@@ -2,9 +2,6 @@
 
 session_start();
 $_SESSION['valid']= true;
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
 
 $config = require '/opt/lampp/htdocs/IAB/config/database.php';
 
