@@ -1,6 +1,6 @@
 <div class="main-slider">
     <!-- Slide 1 -->
-    <div class="background" style="background-image: url('../public/assets/images/background-audi.jpg');">
+    <div class="background" id="background" style="background-image: url('../public/assets/images/background-audi.jpg');">
         <div class="container">
             <p class="premium">. PREMIUM</p>
             <h1>Audi R8</h1>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <!-- Slide 2 -->
-    <div class="background" style="background-image: url('../public/assets/images/background-ferrari.jpg');">
+    <div class="background" id="background"  style="background-image: url('../public/assets/images/background-ferrari.jpg');">
         <div class="container">
             <p class="premium">. PREMIUM</p>
             <h1>Ferrari LaFerrari</h1>
@@ -48,7 +48,7 @@
         </div>
     </div>
     <!-- Slide 3 -->
-    <div class="background" style="background-image: url('../public/assets/images/background-lamborghini.jpg');">
+    <div class="background" id="background"  style="background-image: url('../public/assets/images/background-lamborghini.jpg');">
         <div class="container">
             <p class="premium">. PREMIUM</p>
             <h1>Lamborghini Huracan</h1>
@@ -129,7 +129,7 @@ $result = $conn->query($sql);
                             </div>
                         </div>
                         <div class="car-price">
-                            <button class="primary-button">Detale</button>
+                           <!-- <button class="primary-button">Detale</button>-->
                             <span class="price">' . number_format($row['price'], 0) . 'zł <small>/Doba</small></span>
                         </div>
                     </div>
@@ -151,7 +151,7 @@ $result = $conn->query($sql);
 <section class="section-rent-now">
     <h2 class="h-rent-now">WYPOŻYCZ TERAZ</h2>
     <h1 class="h-book-now">Zarezerwuj Swój Samochód</h1>
-    <form action="../controllers/process_rental.php" method="POST" class="rental-bar">
+    <form action="../controllers/process_rental.php" method="POST" class="rental-bar" id="rental-form">
         <div class="rental-bar-item">
             <label for="car-type">Rodzaj samochodu</label>
             <div class="custom-select">
@@ -169,6 +169,8 @@ $result = $conn->query($sql);
                 </ul>
             </div>
             <input type="hidden" id="car-type" name="car_type" required>
+            <small class="error-message" id="car-type-error" style="color: red; display: none;">Proszę wybrać rodzaj
+                samochodu!</small>
         </div>
 
         <div class="rental-bar-item">
@@ -188,6 +190,8 @@ $result = $conn->query($sql);
                 </ul>
             </div>
             <input type="hidden" id="pick-up-location" name="pick_up_location" required>
+            <small class="error-message" id="pick-up-location-error" style="color: red; display: none;">Proszę wybrać
+                miejsce wynajmu!</small>
         </div>
 
         <div class="rental-bar-item">
@@ -212,6 +216,8 @@ $result = $conn->query($sql);
                 </ul>
             </div>
             <input type="hidden" id="drop-off-location" name="drop_off_location" required>
+            <small class="error-message" id="drop-off-location-error" style="color: red; display: none;">Proszę wybrać
+                miejsce zwrotu!</small>
         </div>
 
         <div class="rental-bar-item">
@@ -227,3 +233,7 @@ $result = $conn->query($sql);
 
 </section>
 
+<script src="../public/main-slider.js" defer></script>
+<script src="../public/car-slider.js" defer></script>
+<script src="../public/rent-now.js" defer></script>
+<script src="../public/rent-now-validate.js" defer></script>

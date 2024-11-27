@@ -535,42 +535,40 @@ header .icons-container img:hover {
   border-top: 2px solid #e8ac3a;
 }
 
+.login-container {
+  position: relative;
+  width: 100%;
+  background-color: #1b1a1a;
+  overflow: hidden;
+  display: flex;
+  padding: 0 10vw;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
 .car-container {
   position: absolute;
   top: 50%;
   left: 50%;
   background-color: transparent;
   transform: translate(-50%, -50%);
-  width: 600px;
+  width: 40vw;
   z-index: 20;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 1s ease-in-out;
+  overflow-x: hidden;
 }
 .car-container .car-image {
   width: 100%;
-  scale: 1.3;
   height: auto;
 }
 
-.login-button {
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  scale: 1.2;
-}
-
-.register-button {
-  position: absolute;
-  right: 10%;
-  top: 50%;
-  scale: 1.2;
-}
-
 .main-container.move-login .car-container {
-  transform: translate(50%, -50%);
+  transform: translate(20%, -50%);
 }
 
 .main-container.move-register .car-container {
-  transform: translate(-150%, -50%);
+  transform: translate(-120%, -50%);
 }
 
 .form-container {
@@ -578,14 +576,14 @@ header .icons-container img:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
+  width: 20vw;
   padding: 2rem;
   background-color: #1b1a1a;
   border-radius: 1rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
   z-index: 30;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 }
 .form-container.hidden {
   opacity: 0;

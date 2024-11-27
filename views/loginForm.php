@@ -8,14 +8,12 @@ if (isset($_SESSION['user_id'])) {
 
 
 
-<section class="main-container">
+<section class="main-container login-container">
+
+    <button class="login-button primary-button">Logowanie</button>
     <div class="car-container">
         <img src="../public/assets/images/loginFormCarV2.png" width="920" height="531" alt="Car" class="car-image">
     </div>
-    <button class="login-button primary-button">Logowanie</button>
-    <button class="register-button secondary-button">Rejestracja</button>
-    <button class="secondary-button back-button hidden">&larr; Powrót</button>
-
     <!-- Login Form -->
     <div class="form-container login-form hidden">
         <form action="../controllers/login.php" method="post">
@@ -49,4 +47,9 @@ if (isset($_SESSION['user_id'])) {
             <button type="submit" class="submit-button primary-button">Zarejestruj się</button>
         </form>
     </div>
+    <button class="register-button secondary-button">Rejestracja</button>
+
+    <button class="secondary-button back-button hidden">&larr; Powrót</button>
 </section>
+
+<script src="../public/login-register.js" defer></script>
