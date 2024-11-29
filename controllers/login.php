@@ -1,7 +1,7 @@
 <?php
 session_start();
 $_SESSION['valid']= true;
-$config = require '/opt/lampp/htdocs/IAB/config/database.php';
+$config = require '../config/database.php';
 
 $conn = new mysqli(
     $config['host'],

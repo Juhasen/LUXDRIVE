@@ -74,8 +74,8 @@
 </div>
 
 <?php
-require_once('/opt/lampp/htdocs/IAB/controllers/functions.php');
-$config = require '/opt/lampp/htdocs/IAB/config/database.php';
+require_once('../controllers/functions.php');
+$config = require '../config/database.php';
 
 $conn = new mysqli(
     $config['host'],
@@ -88,7 +88,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM Vehicles WHERE type = 'luxury'";
+$sql = "SELECT * FROM vehicles WHERE type = 'Luxury'";
 $result = $conn->query($sql);
 ?>
 
@@ -105,7 +105,7 @@ $result = $conn->query($sql);
             <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $gearbox = $row['gearbox_type'] == 1 ? 'Automat' : 'Manual';
+                    $gearbox = $row['gearbox_type'];
                     echo '
                 <div class="car-card">
                     <img src="../public/assets/images/' . htmlspecialchars($row['image']) . '"
