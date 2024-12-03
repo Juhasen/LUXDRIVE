@@ -13,7 +13,7 @@
                 </span>
             </p>
             <div class="main-button-container">
-                <button class="view-detail-button">
+                <button class="view-detail-button" onclick="window.location.href='../public/index.php?page=cars&car_id=20'">
                     Pokaż Szczegóły
                     <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
                 </button>
@@ -38,7 +38,7 @@
                 </span>
             </p>
             <div class="main-button-container">
-                <button class="view-detail-button">
+                <button class="view-detail-button" onclick="window.location.href='../public/index.php?page=cars&car_id=17'">
                     Pokaż Szczegóły
                     <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
                 </button>
@@ -63,7 +63,7 @@
                 </span>
             </p>
             <div class="main-button-container">
-                <button class="view-detail-button">
+                <button class="view-detail-button" onclick="window.location.href='../public/index.php?page=cars&car_id=18'">
                     Pokaż Szczegóły
                     <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
                 </button>
@@ -75,88 +75,6 @@
         </div>
     </div>
 </div>
-
-<?php
-require_once('../controllers/functions.php');
-$config = require '../config/database.php';
-
-$conn = new mysqli(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['database']
-);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$type = $_POST['type'] ?? 'Luxury';
-$sql = "SELECT * FROM vehicles WHERE type = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $type);
-$stmt->execute();
-$result = $stmt->get_result();
-?>
-
-<div class="vertical-line-container">
-    <div class="vertical-line"></div>
-</div>
-
-<section class="section-cars">
-    <div class="section-header">
-        <p class="section-description">WYBIERZ SAMOCHÓD DLA SIEBIE</p>
-        <h2 class="section-title">Flota Samochodów <span class="highlight">Luksusowych</span></h2>
-    </div>
-    <div class="slider-container">
-        <button class="slide-button prev">
-            <img src="../public/assets/icons/arrow_left.svg" alt="poprzedni">
-        </button>
-        <div class="car-slider">
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $gearbox_types = [1 => 'Manualna', 2 => 'Automatyczna'];
-                    $gearbox = $gearbox_types[$row['gearbox_type']] ?? 'Nieznany';
-                    echo '
-                <div class="car-card">
-                    <img src="../public/assets/images/' . htmlspecialchars($row['image']) . '"
-                         alt="' . htmlspecialchars($row['make']) . '" class="car-image"/>
-                    <div class="car-info">
-                        <div class="car-specs">
-                            <h2 class="car-name">' . htmlspecialchars($row['make']) . ' ' . htmlspecialchars($row['model']) . '</h2>
-                            <div class="car-details">
-                                <span class="detail-icon">
-                                    <img src="../public/assets/icons/car-seat.png" alt="Seats"> ' . htmlspecialchars($row['seats']) . '
-                                </span>
-                                <span class="detail-icon">
-                                    <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> ' . htmlspecialchars($gearbox) . '
-                                </span>
-                                <span class="detail-icon">
-                                    <img src="../public/assets/icons/luggage.png" alt="Luggage"> ' . htmlspecialchars($row['luggage']) . '
-                                </span>
-                                <span class="detail-icon">
-                                    <img src="../public/assets/icons/calendar.png" alt="Year"> ' . htmlspecialchars($row['year']) . '
-                                </span>
-                            </div>
-                        </div>
-                        <div class="car-price">
-                            <span class="price">' . number_format($row['price'], 0) . 'zł <small>/Doba</small></span>
-                        </div>
-                    </div>
-                </div>
-                ';
-                }
-            } else {
-                echo '<p style="color: azure">Nie udało nam się znaleźć samochodu dla podanych filtrów.</p>';
-            }
-            ?>
-        </div>
-        <button class="slide-button next">
-            <img src="../public/assets/icons/arrow_right.svg" alt="następny">
-        </button>
-    </div>
-</section>
 
 <div class="vertical-line-container">
     <div class="vertical-line"></div>
@@ -241,6 +159,88 @@ $result = $stmt->get_result();
 
         <button class="primary-button" type="submit">Wypożycz Teraz</button>
     </form>
+</section>
+
+<?php
+require_once('../controllers/functions.php');
+$config = require '../config/database.php';
+
+$conn = new mysqli(
+    $config['host'],
+    $config['username'],
+    $config['password'],
+    $config['database']
+);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$type = $_POST['type'] ?? 'Luxury';
+$sql = "SELECT * FROM vehicles WHERE type = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $type);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
+<div class="vertical-line-container">
+    <div class="vertical-line"></div>
+</div>
+
+<section class="section-cars">
+    <div class="section-header">
+        <p class="section-description">WYBIERZ SAMOCHÓD DLA SIEBIE</p>
+        <h2 class="section-title">Flota Samochodów <span class="highlight">Luksusowych</span></h2>
+    </div>
+    <div class="slider-container">
+        <button class="slide-button prev">
+            <img src="../public/assets/icons/arrow_left.svg" alt="poprzedni">
+        </button>
+        <div class="car-slider">
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $gearbox_types = [1 => 'Manualna', 2 => 'Automatyczna'];
+                    $gearbox = $gearbox_types[$row['gearbox_type']] ?? 'Nieznany';
+                    echo '
+                <div class="car-card">
+                    <img src="../public/assets/images/' . htmlspecialchars($row['image']) . '"
+                         alt="' . htmlspecialchars($row['make']) . '" class="car-image"/>
+                    <div class="car-info">
+                        <div class="car-specs">
+                            <h2 class="car-name">' . htmlspecialchars($row['make']) . ' ' . htmlspecialchars($row['model']) . '</h2>
+                            <div class="car-details">
+                                <span class="detail-icon">
+                                    <img src="../public/assets/icons/car-seat.png" alt="Seats"> ' . htmlspecialchars($row['seats']) . '
+                                </span>
+                                <span class="detail-icon">
+                                    <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> ' . htmlspecialchars($gearbox) . '
+                                </span>
+                                <span class="detail-icon">
+                                    <img src="../public/assets/icons/luggage.png" alt="Luggage"> ' . htmlspecialchars($row['luggage']) . '
+                                </span>
+                                <span class="detail-icon">
+                                    <img src="../public/assets/icons/calendar.png" alt="Year"> ' . htmlspecialchars($row['year']) . '
+                                </span>
+                            </div>
+                        </div>
+                        <div class="car-price">
+                            <span class="price">' . number_format($row['price'], 0) . 'zł <small>/Doba</small></span>
+                        </div>
+                    </div>
+                </div>
+                ';
+                }
+            } else {
+                echo '<p style="color: azure">Nie udało nam się znaleźć samochodu dla podanych filtrów.</p>';
+            }
+            ?>
+        </div>
+        <button class="slide-button next">
+            <img src="../public/assets/icons/arrow_right.svg" alt="następny">
+        </button>
+    </div>
 </section>
 
 <div class="vertical-line-container">
