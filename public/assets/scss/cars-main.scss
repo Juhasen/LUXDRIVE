@@ -1,110 +1,160 @@
 @use "utils" as *;
 
-$card-width: 25%;
+$card-width: 100%;
 $bar-width: 95%;
 
-.slider-container {
-  width: 100%;
+.section-cars {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 60px;
-  align-items: center;
-}
+  padding: 0 20px;
+  background-color: $color-dark-theme;
 
-
-.car-card {
-  width: $card-width;
-  max-width: 1200px;
-  height: auto;
-  overflow: hidden;
-  color: $color-white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
-
-  .car-image {
+  .section-header {
     width: 100%;
-    max-width: 1200px;
-    height: auto;
-    max-height: 600px;
-    object-fit: cover;
-    box-shadow: $shadow-box;
-    border-radius: $border-4xl;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 50px;
+
+    .section-description {
+      font-size: 1.2rem;
+      letter-spacing: 5px;
+      color: $color-gold;
+    }
+
+    .section-title {
+      font-size: xxx-large;
+      font-weight: bold;
+      color: $color-white;
+    }
   }
 
-  .car-info {
-    width: $bar-width;
-    position: relative;
-    bottom: 40px;
-    padding: 15px 30px;
+  .car-slider .car-card:not(.car-card:first-child) {
+    display: none;
+  }
+
+
+  .slider-container {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
     flex-wrap: wrap;
-    background-color: $color-medium-gray;
-    border-radius: $border-2xl;
-    box-shadow: $shadow-box;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
 
-    .car-specs {
+    .slide-button {
+      background-color: $color-medium-gray;
+      box-shadow: $shadow-box;
+      border-radius: $border-full;
+      border: none;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+
+
+    .car-card {
+      width: $card-width;
+      max-width: 900px;
+      height: auto;
+      overflow: hidden;
+      color: $color-white;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin: 0 20px;
 
-
-      .car-name {
-        font-size: 1.6rem;
-        font-weight: bold;
-        margin: 0;
+      .car-image {
+        width: 100%;
+        aspect-ratio: 16 / 9; // Maintains a consistent aspect ratio
+        object-fit: cover; // Ensures the image fills the container proportionally
+        box-shadow: $shadow-box;
+        border-radius: $border-4xl;
       }
 
-      .car-details {
+      .car-info {
+        width: $bar-width;
+        position: relative;
+        bottom: 40px;
+        padding: 15px 30px;
         display: flex;
-        gap: 15px;
-        font-size: 1.2rem;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        background-color: $color-medium-gray;
+        border-radius: $border-2xl;
+        box-shadow: $shadow-box;
 
-        padding-right: 30px;
-
-        .detail-icon {
+        .car-specs {
           display: flex;
-          align-items: center;
-          gap: 5px;
-          font-weight: normal;
+          flex-direction: column;
+          gap: 10px;
 
-          img {
-            width: 40px;
-            height: 40px;
+
+          .car-name {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 0;
+          }
+
+          .car-details {
+            display: flex;
+            gap: 15px;
+            font-size: 1.2rem;
+
+            padding-right: 30px;
+
+            .detail-icon {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              font-weight: normal;
+
+              img {
+                width: 40px;
+                height: 40px;
+              }
+            }
+          }
+        }
+
+
+        .car-price {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 30px;
+
+
+          .price {
+            display: flex;
+            flex-direction: column;
+            font-size: 2rem;
+            font-weight: bold;
+            color: $color-gold;
+
+            small {
+              font-size: 1rem;
+              font-weight: normal;
+              color: $color-white;
+              text-align: right;
+            }
           }
         }
       }
     }
-
-
-    .car-price {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-      width: 30%;
-
-      .price {
-        display: flex;
-        flex-direction: column;
-        font-size: 2rem;
-        font-weight: bold;
-        color: $color-gold;
-
-        small {
-          font-size: 1rem;
-          font-weight: normal;
-          color: $color-white;
-          text-align: right;
-        }
-      }
-    }
   }
+
+
 }
+

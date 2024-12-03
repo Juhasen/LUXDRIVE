@@ -1,36 +1,101 @@
 <?php
-$config = require '../config/database.php';
+require '../controllers/filter_cars.php';
 
-$conn = new mysqli(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['database']
-);
+$result = getFilteredCars($_GET);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM Vehicles";
-$result = $conn->query($sql);
-
-$conn->close();
 ?>
 
-
 <section class="main-container">
-    <div class="cars-container">
-       <?php
-       if ($result->num_rows > 0) {
-           while ($row = $result->fetch_assoc()) {
-               $gearbox = $row['gearbox_type'] == 1 ? 'Automat' : 'Manual';
 
-               echo '
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>Filtry</h2>
+        <form id="filter-form" method="GET" action="../public/index.php">
+            <input type="hidden" name="page" value="cars">
+            <div class="filter-group">
+                <label for="gearbox">Typ skrzyni biegów</label>
+                <select name="gearbox" id="gearbox">
+                    <option value="">Każda</option>
+                    <option value="2" <?php echo (isset($_GET['gearbox']) && $_GET['gearbox'] == '2') ? 'selected' : ''; ?>>
+                        Automatyczna
+                    </option>
+                    <option value="1" <?php echo (isset($_GET['gearbox']) && $_GET['gearbox'] == '1') ? 'selected' : ''; ?>>
+                        Manualna
+                    </option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="car_type">Rodzaj samochodu:</label>
+                <select name="car_type" id="car_type">
+                    <option value="">Wszystkie</option>
+                    <option value="Sports" <?php echo (isset($_GET['car_type']) && $_GET['car_type'] == 'Sports') ? 'selected' : ''; ?>>
+                        Sportowe
+                    </option>
+                    <option value="Luxury" <?php echo (isset($_GET['car_type']) && $_GET['car_type'] == 'Luxury') ? 'selected' : ''; ?>>
+                        Luksusowe
+                    </option>
+                    <option value="SUV" <?php echo (isset($_GET['car_type']) && $_GET['car_type'] == 'SUV') ? 'selected' : ''; ?>>
+                        SUV
+                    </option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Min. ilość siedzeń</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="seats"
+                               value="" <?php echo !isset($_GET['seats']) || $_GET['seats'] === '' ? 'checked' : ''; ?>>
+                        <span>Dowolna</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="seats"
+                               value="2" <?php echo isset($_GET['seats']) && htmlspecialchars($_GET['seats']) == '2' ? 'checked' : ''; ?>>
+                        <span>2</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="seats"
+                               value="4" <?php echo isset($_GET['seats']) && htmlspecialchars($_GET['seats']) == '4' ? 'checked' : ''; ?>>
+                        <span>4</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="seats"
+                               value="5" <?php echo isset($_GET['seats']) && htmlspecialchars($_GET['seats']) == '5' ? 'checked' : ''; ?>>
+                        <span>5</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="seats"
+                               value="7" <?php echo isset($_GET['seats']) && htmlspecialchars($_GET['seats']) == '7' ? 'checked' : ''; ?>>
+                        <span>7</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="filter-group">
+                <label for="price">Max Cena (zł)</label>
+                <input type="number" name="price" id="price" placeholder="Np. 5000"
+                       value="<?php echo isset($_GET['price']) ? htmlspecialchars($_GET['price']) : ''; ?>">
+            </div>
+            <div class="filter-group">
+                <button type="submit" class="primary-button">Zastosuj filtry</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- CARS -->
+    <div class="cars-container">
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $gearbox = $row['gearbox_type'] == 2 ? 'Automat' : 'Manual';
+
+                echo '
                 <div class="car-card">
                     <img src="../public/assets/images/' . htmlspecialchars($row['image']) . '"
                          alt="' . htmlspecialchars($row['make']) . '" class="car-image"/>
-                    <div class="car-info-page">
+                    <div class="car-info">
                         <div class="car-specs">
                             <h2 class="car-name">' . htmlspecialchars($row['make']) . ' ' . htmlspecialchars($row['model']) . '</h2>
                             <div class="car-details">
@@ -49,17 +114,16 @@ $conn->close();
                             </div>
                         </div>
                         <div class="car-price">
+                            <button class="primary-button reserve-button">Rezerwuj <img src="../public/assets/icons/car-key.png" alt="car key"></button>
                             <span class="price">' . number_format($row['price'], 0) . 'zł <small>/Doba</small></span>
-                            <button class="primary-button"><img src="../public/assets/icons/car-key.png" alt="car key" height="50" width="50"></button>
                         </div>
                     </div>
                 </div>
                 ';
-           }
-       } else {
-           echo '<p>No cars available.</p>';
-       }
+            }
+        } else {
+            echo '<p style="color: azure">Nie udało nam się znaleźć samochodu dla podanych filtrów.</p>';
+        }
         ?>
     </div>
-
 </section>

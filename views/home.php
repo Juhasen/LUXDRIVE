@@ -1,6 +1,7 @@
 <div class="main-slider">
     <!-- Slide 1 -->
-    <div class="background" id="background" style="background-image: url('../public/assets/images/background-audi.jpg');">
+    <div class="background" id="background"
+         style="background-image: url('../public/assets/images/background-audi.jpg');">
         <div class="container">
             <p class="premium">. PREMIUM</p>
             <h1>Audi R8</h1>
@@ -24,7 +25,8 @@
         </div>
     </div>
     <!-- Slide 2 -->
-    <div class="background" id="background"  style="background-image: url('../public/assets/images/background-ferrari.jpg');">
+    <div class="background" id="background"
+         style="background-image: url('../public/assets/images/background-ferrari.jpg');">
         <div class="container">
             <p class="premium">. PREMIUM</p>
             <h1>Ferrari LaFerrari</h1>
@@ -48,7 +50,8 @@
         </div>
     </div>
     <!-- Slide 3 -->
-    <div class="background" id="background"  style="background-image: url('../public/assets/images/background-lamborghini.jpg');">
+    <div class="background" id="background"
+         style="background-image: url('../public/assets/images/background-lamborghini.jpg');">
         <div class="container">
             <p class="premium">. PREMIUM</p>
             <h1>Lamborghini Huracan</h1>
@@ -88,9 +91,17 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM vehicles WHERE type = 'Luxury'";
-$result = $conn->query($sql);
+$type = $_POST['type'] ?? 'Luxury';
+$sql = "SELECT * FROM vehicles WHERE type = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $type);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
+
+<div class="vertical-line-container">
+    <div class="vertical-line"></div>
+</div>
 
 <section class="section-cars">
     <div class="section-header">
@@ -105,7 +116,8 @@ $result = $conn->query($sql);
             <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $gearbox = $row['gearbox_type'];
+                    $gearbox_types = [1 => 'Manualna', 2 => 'Automatyczna'];
+                    $gearbox = $gearbox_types[$row['gearbox_type']] ?? 'Nieznany';
                     echo '
                 <div class="car-card">
                     <img src="../public/assets/images/' . htmlspecialchars($row['image']) . '"
@@ -129,7 +141,6 @@ $result = $conn->query($sql);
                             </div>
                         </div>
                         <div class="car-price">
-                           <!-- <button class="primary-button">Detale</button>-->
                             <span class="price">' . number_format($row['price'], 0) . 'zł <small>/Doba</small></span>
                         </div>
                     </div>
@@ -137,7 +148,7 @@ $result = $conn->query($sql);
                 ';
                 }
             } else {
-                echo '<p>No cars available.</p>';
+                echo '<p style="color: azure">Nie udało nam się znaleźć samochodu dla podanych filtrów.</p>';
             }
             ?>
         </div>
@@ -145,8 +156,11 @@ $result = $conn->query($sql);
             <img src="../public/assets/icons/arrow_right.svg" alt="następny">
         </button>
     </div>
-
 </section>
+
+<div class="vertical-line-container">
+    <div class="vertical-line"></div>
+</div>
 
 <section class="section-rent-now">
     <h2 class="h-rent-now">WYPOŻYCZ TERAZ</h2>
@@ -229,11 +243,90 @@ $result = $conn->query($sql);
     </form>
 </section>
 
-<section style="height: 50vh">
+<div class="vertical-line-container">
+    <div class="vertical-line"></div>
+</div>
 
+<section class="section-car-categories">
+    <h3 class="categories-subtitle">KATEGORIE</h3>
+    <h2 class="categories-title">Rodzaje <span class="highlight">Samochodów</span></h2>
+    <div class="categories-container">
+        <div class="category-card">
+            <img src="../public/assets/images/categories/Luxury.jpg" alt="Luxury Cars">
+            <h3>Luksusowe</h3>
+            <div class="arrow-button-container">
+                <button class="arrow-button" id="navigateButtonLuxury">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/></svg>
+                </button>
+            </div>
+
+        </div>
+        <div class="category-card">
+            <img src="../public/assets/images/categories/Sports.jpg" alt="Sports">
+            <h3>Sportowe</h3>
+            <div class="arrow-button-container">
+                <button class="arrow-button" id="navigateButtonSports">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="category-card">
+            <img src="../public/assets/images/categories/SUV.jpg" alt="SUV">
+            <h3>SUV</h3>
+            <div class="arrow-button-container">
+                <button class="arrow-button" id="navigateButtonSUV">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
 </section>
+
+<div class="vertical-line-container">
+    <div class="vertical-line"></div>
+</div>
+
+<section class="section-rent-steps">
+    <h3 class="steps-subtitle">KROKI</h3>
+    <h2 class="steps-title">Proces <span class="highlight">Wypożyczenia</span></h2>
+    <div class="steps-container">
+        <div class="step-card">
+            <h3>Wybierz Samochód</h3>
+            <p>Zobacz naszą gamę samochodów, znajdź swój wymarzony model na następujące dni.</p>
+            <div class="step-counter-container">
+                <button class="step">
+                    01.
+                </button>
+            </div>
+
+        </div>
+        <div class="step-card">
+            <h3>Zarezerwuj</h3>
+            <p>Nasza strona zapewni Ci płynne zarezerwowanie samochodu lub skontaktowanie się z nami.</p>
+            <div class="step-counter-container">
+                <button class="step">
+                   02.
+                </button>
+            </div>
+        </div>
+        <div class="step-card">
+            <h3>Czerp Radość Z Jazdy</h3>
+            <p>Otrzymaj kluczyki i ciesz się z saamochodu. Traktujemy wszystkie nasze samochody z respektem.</p>
+            <div class="step-counter-container">
+                <button class="step">
+                    03.
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="vertical-line-container">
+    <div class="vertical-line"></div>
+</div>
 
 <script src="../public/main-slider.js" defer></script>
 <script src="../public/car-slider.js" defer></script>
 <script src="../public/rent-now.js" defer></script>
 <script src="../public/rent-now-validate.js" defer></script>
+<script src="../public/car-categories.js" defer></script>

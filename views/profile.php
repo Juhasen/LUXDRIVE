@@ -3,7 +3,7 @@
 session_start();
 $_SESSION['valid']= true;
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /opt/lampp/htdocs/IAB/views/loginForm.php");
+    header("Location: http://localhost:63342/LUXDRIVE/public/index.php?page=home");
     exit;
 }
 

@@ -32,6 +32,19 @@
   transition: none;
 }
 
+.vertical-line-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin: 0 20px;
+}
+.vertical-line-container .vertical-line {
+  width: 2px;
+  height: 80px;
+  background-color: #f5a623;
+}
+
 .section-rent-now {
   position: relative;
   background-image: url("/public/assets/images/background_vantage.jpg");
@@ -105,7 +118,7 @@
   min-width: 200px;
   width: 100%;
   background-color: transparent;
-  font-size: 1.15rem;
+  font-size: 1rem;
   border-radius: 0.25rem;
 }
 .section-rent-now .rental-bar .rental-bar-item .custom-select .select-wrapper {
@@ -172,7 +185,7 @@
   height: 100%;
   width: 100%;
   padding: 0.675em 1em;
-  font-size: 1.15rem;
+  font-size: 1rem;
   background-color: transparent;
   color: #fff;
   border-radius: 1.5rem;
@@ -186,7 +199,7 @@
   height: 100%;
 }
 .section-rent-now .rental-bar button {
-  font-size: xx-large;
+  font-size: large;
   font-weight: bold;
 }
 

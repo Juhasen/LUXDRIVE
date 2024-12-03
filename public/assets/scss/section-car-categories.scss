@@ -1,0 +1,107 @@
+﻿@use "utils" as *;
+@use "sass:color";
+
+.section-car-categories {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 20px;
+  background-color: $color-dark-theme;
+
+  .categories-subtitle {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: $color-gold;
+    text-align: center;
+    letter-spacing: 10px;
+    width: 100%;
+  }
+
+  .categories-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: $color-white;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .categories-container {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    background-color: $color-dark-theme;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: $color-dark-theme;
+      width: 30%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: $shadow-box;
+      transition: transform 0.3s ease;
+      position: relative;  // Ensure positioning context for absolute elements
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+      }
+
+      // Place text and button over the image
+      h3,
+      .arrow-button-container {
+        position: absolute;  // Absolutely position over the image
+        color: $color-black; // Ensure text color is white
+        font-size: 2.3rem;
+        transition: transform 0.3s ease;
+      }
+
+      h3 {
+        top: 10px;        // Vertically center text
+        left: 20px;       // Horizontally center text
+        font-weight: bolder;
+      }
+
+      .arrow-button-container {
+        bottom:0;
+        left:0;
+        background-color: $color-dark-theme;
+        border-top-right-radius: 30px;
+        padding: 10px;
+
+        .arrow-button {
+          width: 100%;
+          height: auto;
+          padding: 5px;
+          background-color: $color-dark-theme;
+          border: 3px solid $color-gold;
+          border-radius: 100%;
+          cursor: pointer;
+          font-size: 1.2rem;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: color.adjust($color-gold, $lightness: -0.4%);
+          }
+
+        }
+      }
+
+
+    }
+  }
+
+}

@@ -6,6 +6,10 @@ $color-transparent-darker: rgba(0, 0, 0, 0.5);
 $color-dark-theme: #1b1a1a;
 $color-medium-gray: #2e2f2e;
 $color-gray-light: #333;
+$color-gray-lighter: #646464;
+$white-transparent: rgba(255, 255, 255, 0.5);
+
+$transition-duration: 0.3s;
 
 $border-2xl: 1rem;
 $border-3xl: 1.5rem;
@@ -13,6 +17,8 @@ $border-4xl: 2rem;
 $border-full: 9999px;
 
 $shadow-box: 0px 4px 10px rgba(0, 0, 0, 0.2);
+
+$shadow-box-light: 0px 4px 10px rgba(255, 255, 255, 0.4);
 
 .highlight {
   color: $color-gold;
@@ -51,3 +57,19 @@ $shadow-box: 0px 4px 10px rgba(0, 0, 0, 0.2);
     transition: none;
   }
 }
+
+.vertical-line-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin: 0 20px;
+
+  .vertical-line {
+    width: 2px;
+    height: 80px;
+    background-color: #f5a623;
+
+  }
+}
+

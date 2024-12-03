@@ -1,109 +1,231 @@
 @use "utils" as *;
 
-$card-width: 25%;
+$card-width: 100%;
 $bar-width: 95%;
+$sidebar-width: 10%;
 
-.cars-container {
-  width: 100%;
+.main-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 60px;
-  align-items: center;
+  gap: 20px;
+
+  .sidebar {
+    flex-shrink: 0;
+  }
+
+  .cars-container {
+    flex-grow: 1;
+  }
+}
+
+.sidebar {
+  width: $sidebar-width;
+  min-width: 150px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  background-color: $color-gray-light;
+  padding: 20px 10px;
+  border-radius: $border-2xl;
+  box-shadow: $shadow-box-light;
+  color: $color-white;
+
+  form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .filter-group {
+
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: $border-2xl;
+        background-color: $color-dark-theme;
+        color: $color-white;
+
+      }
+
+      button {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+      }
+
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+
+          input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid $color-gray-light;
+            border-radius: 50%;
+            outline: none;
+            background-color: $color-dark-theme;
+            cursor: pointer;
+
+            &:checked {
+              background-color: $color-gold;
+              border-color: $color-gold;
+              box-shadow: 0 0 4px $color-gold;
+            }
+          }
+
+          span {
+            color: $color-white;
+            font-size: 1rem;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+
+
 }
 
 
-.car-card {
-  width: $card-width;
-  max-width: 1200px;
-  height: auto;
-  overflow: hidden;
-  color: $color-white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
+.cars-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 40px;
+  margin-right: 20px;
+  width: 100% - $sidebar-width;
 
-  .car-image {
-    width: 100%;
+
+  .car-card {
+    width: $card-width;
     max-width: 1200px;
     height: auto;
-    max-height: 600px;
-    object-fit: cover;
-    box-shadow: $shadow-box;
-    border-radius: $border-4xl;
-  }
-
-  .car-info-page {
-    width: $bar-width;
-    position: relative;
-    bottom: 40px;
-    padding: 15px 30px;
+    overflow: hidden;
+    color: $color-white;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
-    background-color: $color-medium-gray;
-    border-radius: $border-2xl;
-    box-shadow: $shadow-box;
+    flex-direction: column;
+    align-items: center;
 
-    .car-specs {
+
+    .car-image {
+      width: 100%;
+      aspect-ratio: 16 / 9; // Maintains a consistent aspect ratio
+      object-fit: cover; // Ensures the image fills the container proportionally
+      box-shadow: $shadow-box;
+      border-radius: $border-4xl;
+    }
+
+    .car-info {
+      width: $bar-width;
+      position: relative;
+      bottom: 40px;
+      padding: 15px 30px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 10px;
+      background-color: $color-medium-gray;
+      border-radius: $border-2xl;
+      box-shadow: $shadow-box;
+
+      .car-specs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
 
 
-      .car-name {
-        font-size: 1.6rem;
-        font-weight: bold;
-        margin: 0;
+        .car-name {
+          font-size: 1.3rem;
+          font-weight: bold;
+          margin: 0;
+        }
+
+        .car-details {
+          display: flex;
+          gap: 15px;
+          font-size: 1rem;
+
+
+          .detail-icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: normal;
+
+            img {
+              width: 30px;
+              height: 30px;
+            }
+          }
+        }
       }
 
-      .car-details {
+
+      .car-price {
         display: flex;
-        gap: 15px;
-        font-size: 1.2rem;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        gap: 30px;
 
-        padding-right: 30px;
-
-        .detail-icon {
+        .reserve-button {
           display: flex;
+          flex-direction: row;
+          text-align: center;
           align-items: center;
-          gap: 5px;
-          font-weight: normal;
+          gap: 10px;
 
           img {
             width: 40px;
             height: 40px;
           }
         }
-      }
-    }
 
+        .price {
+          display: flex;
+          flex-direction: column;
+          font-size: 1.6rem;
+          font-weight: bold;
+          color: $color-gold;
 
-    .car-price {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-      width: 30%;
-
-      .price {
-        display: flex;
-        flex-direction: column;
-        font-size: 2rem;
-        font-weight: bold;
-        color: $color-gold;
-
-        small {
-          font-size: 1rem;
-          font-weight: normal;
-          color: $color-white;
-          text-align: right;
+          small {
+            font-size: 1rem;
+            font-weight: normal;
+            color: $color-white;
+            text-align: right;
+          }
         }
       }
     }
   }
 }
+

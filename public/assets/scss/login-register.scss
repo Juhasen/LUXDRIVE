@@ -1,0 +1,156 @@
+@use "utils" as *;
+
+$form-width: 90vw;
+$input-padding: 0.5rem;
+$label-color: rgba(255, 255, 255, 0.9);
+$label-active-color: #f2a900;
+$blur: 8px;
+
+.login-container {
+  width: 100%;
+  background-color: $color-dark-theme;
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+
+  .login-background {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    padding-left: 5%;
+    background-image: url("../images/background-login-register.jpg");
+    opacity: 1;
+    background-size: cover;
+    display: flex;
+    background-position: center;
+    align-items: center;
+    justify-content: left;
+
+    .form-container {
+      position: relative;
+      max-width: $form-width;
+      min-width: 400px;
+      margin-top: 100px;
+      padding: 2rem;
+      box-shadow: $shadow-box;
+      text-align: center;
+      border: 2px solid $white-transparent;
+      border-radius: $border-3xl;
+      backdrop-filter: blur($blur);
+      -webkit-backdrop-filter: blur($blur);
+      z-index: 30;
+      transition: opacity $transition-duration ease-in-out;
+
+      .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 5rem;
+      }
+
+      .form-group {
+        position: relative;
+        margin: 1.5rem 0;
+        white-space: nowrap;
+
+        .password-group {
+          position: relative;
+        }
+
+        .eye-button {
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+        }
+
+        .eye-button img {
+          width: 20px;
+          height: 20px;
+        }
+
+        input {
+          width: 100%;
+          padding: $input-padding;
+          font-size: 1rem;
+          border: none;
+          border-bottom: 1px solid $color-white;
+          background-color: transparent;
+          color: $color-white;
+          outline: none;
+          transition: border-color 0.3s ease, transform 0.3s ease, font-size 0.3s ease;
+          box-sizing: border-box;
+
+          &:focus {
+            border-bottom-color: $label-active-color;
+          }
+
+          &:focus + label,
+          &:not(:placeholder-shown) + label {
+            transform: translateY(-2rem);
+            font-size: 0.8rem;
+          }
+        }
+
+        label {
+          position: absolute;
+          top: 50%;
+          left: $input-padding;
+          transform: translateY(-50%);
+          font-size: 1rem;
+          color: $label-color;
+          pointer-events: none;
+          transition: all 0.3s ease;
+        }
+      }
+
+      .submit-button {
+        margin-top: 1rem;
+        scale: 1.1;
+      }
+
+      .back-to-login {
+        margin-top: 10px;
+        scale: 0.9;
+        a {
+          color: $color-white;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $color-gold;
+          }
+        }
+      }
+
+      .form-info {
+        color: $color-white;
+        font-size: 0.8rem;
+
+        a {
+          color: $color-gold;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $color-white;
+          }
+        }
+      }
+
+      .register-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

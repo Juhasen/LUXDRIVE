@@ -1,0 +1,108 @@
+﻿@use "utils" as *;
+
+.contact-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: $color-gray-light;
+  border-radius: $border-2xl;
+  box-shadow: $shadow-box-light;
+  color: $color-white;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: $color-gold;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: $color-white;
+  }
+
+  .contact-info {
+    background-color: $color-medium-gray;
+    padding: 20px;
+    border-radius: $border-4xl;
+    box-shadow: $shadow-box;
+    margin-bottom: 30px;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      text-align: center;
+      color: $color-gold;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+  }
+
+  .contact-form {
+    background-color: $color-dark-theme;
+    padding: 20px;
+    border-radius: $border-4xl;
+    box-shadow: $shadow-box;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: $color-gold;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: $color-gold;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: none;
+        border-radius: $border-3xl;
+        background-color: $color-gray-light;
+        color: $color-white;
+
+
+        &:focus {
+          outline: 2px solid $color-gold;
+        }
+      }
+
+      textarea {
+        max-height: 200px;
+        resize: none;
+      }
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $color-dark-theme;
+      background-color: $color-gold;
+      border: none;
+      border-radius: $border-2xl;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: lighten($color-gold, 10%);
+      }
+    }
+  }
+}

@@ -34,7 +34,7 @@ if ($stmt->num_rows > 0) {
         $_SESSION['user_name'] = $name;
         $_SESSION['user_email'] = $email;
 
-        header("Location: http://localhost:63342/IAB/public/index.php?page=profile");
+        header("Location: http://localhost:63342/LUXDRIVE/public/index.php?page=profile");
         exit;
     } else {
         echo "<h1>Invalid username or password!</h1>";

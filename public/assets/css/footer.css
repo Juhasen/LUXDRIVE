@@ -32,6 +32,19 @@
   transition: none;
 }
 
+.vertical-line-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin: 0 20px;
+}
+.vertical-line-container .vertical-line {
+  width: 2px;
+  height: 80px;
+  background-color: #f5a623;
+}
+
 .footer {
   display: flex;
   justify-content: center;
@@ -39,7 +52,7 @@
   text-align: center;
   padding: 10px;
   color: #fff;
-  background-color: #000;
+  background-color: #1b1a1a;
   border-top: 2px solid #e8ac3a;
 }
 
