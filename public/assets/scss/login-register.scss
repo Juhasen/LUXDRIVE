@@ -1,11 +1,5 @@
 @use "utils" as *;
 
-$form-width: 90vw;
-$input-padding: 0.5rem;
-$label-color: rgba(255, 255, 255, 0.9);
-$label-active-color: #f2a900;
-$blur: 8px;
-
 .login-container {
   width: 100%;
   background-color: $color-dark-theme;

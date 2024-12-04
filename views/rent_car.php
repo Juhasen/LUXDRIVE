@@ -2,9 +2,6 @@
 session_start();
 require '../config/database.php';
 
-// Check if the user is logged in
-$isLoggedIn = isset($_SESSION['user_id']); // Assuming `user_id` is set in the session on login
-
 // Connect to the database
 $config = require '../config/database.php';
 $conn = new mysqli(
@@ -17,6 +14,20 @@ $conn = new mysqli(
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+// Check if the user is logged in
+$isLoggedIn = isset($_SESSION['user_id']);
+
+if ($isLoggedIn) {
+    //fetch all data of user using prepare
+    $user_id = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT * FROM Users WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    $stmt->close();
+}
+
 
 // Fetch car details using car_id
 $car_id = isset($_GET['car_id']) ? intval($_GET['car_id']) : 0;
@@ -34,59 +45,216 @@ $conn->close();
 
 
 <div class="rent-car-container">
-    <div class="car-card">
-        <img src="../public/assets/images/<?php echo htmlspecialchars($car['image']); ?>"
-             alt="<?php echo htmlspecialchars($car['make']); ?>" class="car-image"/>
-        <div class="car-info">
-            <div class="car-specs">
-                <h2 class="car-name"><?php echo htmlspecialchars($car['make']) . ' ' . htmlspecialchars($car['model']); ?></h2>
-                <div class="car-details">
+    <h1 class="rent-car-header">Rezerwacja</h1>
+    <h2 class="spaced-header">POJAZDU</h2>
+    <div class="car-container">
+        <div class="car-card">
+            <img src="../public/assets/images/<?php echo htmlspecialchars($car['image']); ?>"
+                 alt="<?php echo htmlspecialchars($car['make']); ?>" class="car-image"/>
+            <div class="car-info">
+                <div class="car-specs">
+                    <h2 class="car-name"><?php echo htmlspecialchars($car['make']) . ' ' . htmlspecialchars($car['model']); ?></h2>
+                    <div class="car-details">
                         <span class="detail-icon">
-                            <img src="../public/assets/icons/car-seat.png" alt="Seats"> <?php echo htmlspecialchars($car['seats']); ?>
+                            <img src="../public/assets/icons/car-seat.png"
+                                 alt="Seats"> <?php echo htmlspecialchars($car['seats']); ?>
                         </span>
-                    <span class="detail-icon">
-                            <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> <?php echo htmlspecialchars($gearbox); ?>
+                        <span class="detail-icon">
+                            <img src="../public/assets/icons/gearbox.png"
+                                 alt="Gearbox"> <?php echo htmlspecialchars($gearbox); ?>
                         </span>
-                    <span class="detail-icon">
-                            <img src="../public/assets/icons/luggage.png" alt="Luggage"> <?php echo htmlspecialchars($car['luggage']); ?>
+                        <span class="detail-icon">
+                            <img src="../public/assets/icons/luggage.png"
+                                 alt="Luggage"> <?php echo htmlspecialchars($car['luggage']); ?>
                         </span>
-                    <span class="detail-icon">
-                            <img src="../public/assets/icons/calendar.png" alt="Year"> <?php echo htmlspecialchars($car['year']); ?>
+                        <span class="detail-icon">
+                            <img src="../public/assets/icons/calendar.png"
+                                 alt="Year"> <?php echo htmlspecialchars($car['year']); ?>
                         </span>
+                    </div>
+                </div>
+                <div class="car-price">
+                    <span class="price"><?php echo number_format($car['price'], 0); ?>zł <small>/Doba</small></span>
                 </div>
             </div>
-            <div class="car-price">
-                <span class="price"><?php echo number_format($car['price'], 0); ?>zł <small>/Doba</small></span>
+        </div>
+        <?php if (!$isLoggedIn): ?>
+            <!-- Show login prompt -->
+            <div class="login-prompt">
+                <p>Musisz się zalogować, aby wypożyczyć samochód.</p>
+                <button onclick="window.location.href='../public/index.php?page=login'" class="primary-button">Przejdź
+                    do logowania
+                </button>
             </div>
-        </div>
+        <?php else: ?>
+
+
+            <div class="user-data">
+                <h3>TWOJE DANE</h3>
+                <div class="data-container">
+                    <div class="labels">
+                        <p>Imię:</p>
+                        <p>Nazwisko:</p>
+                        <p>Email:</p>
+                        <p>Telefon:</p>
+                        <p>Kraj:</p>
+                        <p>Miasto:</p>
+                        <p>Ulica:</p>
+                        <p>Numer mieszkania:</p>
+                        <p>Kod pocztowy:</p>
+                        <p>Numer licencji:</p>
+                    </div>
+                    <div class="values">
+                        <p><span><?php echo htmlspecialchars($user['name']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['surname']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['email']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['phone_number']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['country']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['city']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['street']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['apartment']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['postal_code']); ?></span></p>
+                        <p><span><?php echo htmlspecialchars($user['license_number']); ?></span></p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
+    <?php if ($isLoggedIn): ?>
+        <section class="section-rent-now">
+            <h2 class="h-rent-now">WYPOŻYCZ TERAZ</h2>
+            <h1 class="h-book-now">Zarezerwuj Swój Samochód</h1>
+            <form action="../controllers/process_rental.php" method="POST" class="rental-bar" id="rental-form">
+                <div class="rental-bar-item">
+                    <label for="car-type">Rodzaj Samochodu</label>
+                    <div class="custom-select">
+                        <div class="select-wrapper">
+                            <span class="selected-option">Wybierz rodzaj</span>
+                            <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 4.5L6 10L12 4.5H0Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <ul class="select-options">
+                            <li class="select-option" data-value="sport">Sportowy</li>
+                            <li class="select-option" data-value="suv">SUV</li>
+                            <li class="select-option" data-value="luxury">Luksusowy</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="car-type" name="car_type" required>
+                    <small class="error-message" id="car-type-error" style="color: red; display: none;">Proszę wybrać
+                        rodzaj
+                        samochodu!</small>
+                </div>
 
-    <?php if (!$isLoggedIn): ?>
-        <!-- Show login prompt -->
-        <div class="login-prompt">
-            <p>Musisz się zalogować, aby wypożyczyć samochód.</p>
-            <a href="login.php" class="primary-button">Przejdź do logowania</a>
-        </div>
-    <?php else: ?>
-        <!-- Show user data and form -->
-        <div class="user-data">
-            <h3>Twoje dane</h3>
-            <p>Imię: <?php echo htmlspecialchars($_SESSION['user_name']); ?></p>
-            <p>Email: <?php echo htmlspecialchars($_SESSION['user_email']); ?></p>
-        </div>
+                <div class="rental-bar-item">
+                    <label for="pick-up-location">Miejsce Wynajmu</label>
+                    <div class="custom-select">
+                        <div class="select-wrapper">
+                            <span class="selected-option">Wybierz miejsce</span>
+                            <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 4.5L6 10L12 4.5H0Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <ul class="select-options">
+                            <li class="select-option" data-value="warsaw">Warszawa</li>
+                            <li class="select-option" data-value="krakow">Kraków</li>
+                            <li class="select-option" data-value="gdansk">Gdańsk</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="pick-up-location" name="pick_up_location" required>
+                    <small class="error-message" id="pick-up-location-error" style="color: red; display: none;">Proszę
+                        wybrać
+                        miejsce wynajmu!</small>
+                </div>
 
-        <div class="rental-form">
-            <h3>Formularz rezerwacji</h3>
-            <form action="process_rental.php" method="POST">
-                <input type="hidden" name="car_id" value="<?php echo $car['id']; ?>">
-                <label for="start_date">Data rozpoczęcia:</label>
-                <input type="date" name="start_date" id="start_date" required>
+                <div class="rental-bar-item">
+                    <label for="rental-date-start">Data Wypożyczenia</label>
+                    <input type="date" id="rental-date-start" name="rental_date_start" lang="pl-PL" required>
+                </div>
 
-                <label for="end_date">Data zakończenia:</label>
-                <input type="date" name="end_date" id="end_date" required>
+                <div class="rental-bar-item">
+                    <label for="drop-off-location">Miejsce Zwrotu</label>
+                    <div class="custom-select">
+                        <div class="select-wrapper">
+                            <span class="selected-option">Wybierz miejsce</span>
+                            <svg class="arrow-icon" width="12" height="12" viewBox="0 0 12 12"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 4.5L6 10L12 4.5H0Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <ul class="select-options">
+                            <li class="select-option" data-value="warsaw">Warszawa</li>
+                            <li class="select-option" data-value="krakow">Kraków</li>
+                            <li class="select-option" data-value="gdansk">Gdańsk</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" id="drop-off-location" name="drop_off_location" required>
+                    <small class="error-message" id="drop-off-location-error" style="color: red; display: none;">Proszę
+                        wybrać
+                        miejsce zwrotu!</small>
+                </div>
 
-                <button type="submit" class="primary-button">Potwierdź rezerwację</button>
+                <div class="rental-bar-item">
+                    <label for="rental-date-end">Data Zwrotu</label>
+                    <input type="date" id="rental-date-end" name="rental_date_end" lang="pl-PL" required>
+                </div>
             </form>
+            <div class="price-summary-box">
+                <h3>PODSUMOWANIE</h3>
+                <p><strong>Cena:</strong> <span id="total-price"></span></p>
+
+                <button class="primary-button submit-button" type="submit" id="submit-button">Wypożycz Teraz</button>
+            </div>
+        </section>
+
+        <div class="vertical-line-container">
+            <div class="vertical-line"></div>
         </div>
+
     <?php endif; ?>
+
 </div>
+
+<script>
+    // Assign the car price to a JavaScript variable
+    const carPrice = <?php echo json_encode($car['price']); ?>;
+    document.getElementById('total-price').textContent = carPrice + ' zł';
+
+    // Function to calculate the rental price based on dates
+    function calculateTotalPrice() {
+        var startDate = document.getElementById('rental-date-start').value;
+        var endDate = document.getElementById('rental-date-end').value;
+
+        // Ensure both dates are selected
+        if (startDate && endDate) {
+            var start = new Date(startDate);
+            var end = new Date(endDate);
+
+            // Calculate the number of days between the two dates
+            var timeDiff = end - start;
+            var days = timeDiff / (1000 * 3600 * 24); // Convert milliseconds to days
+
+            // Ensure it's at least one day
+            if (days < 1) {
+                days = 1;
+            }
+
+            // Calculate the total price
+            var totalPrice = carPrice * days;
+            console.log(totalPrice);
+
+            // Update the displayed total price
+            document.getElementById('total-price').textContent = totalPrice.toFixed(0) + ' zł';
+        }
+    }
+
+    // Attach event listeners to the date input fields
+    document.getElementById('rental-date-start').addEventListener('change', calculateTotalPrice);
+    document.getElementById('rental-date-end').addEventListener('change', calculateTotalPrice);
+</script>
+
+<script src="../public/rent-now.js" defer></script>
+<script src="../public/rent-now-validate.js" defer></script>
+<script src="../public/rent-now-input.js" defer></script>

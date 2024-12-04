@@ -21,12 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextYear = tomorrow.getFullYear();
         const nextMonth = String(tomorrow.getMonth() + 1).padStart(2, '0');
         const nextDay = String(tomorrow.getDate()).padStart(2, '0');
-        const nextDate = `${nextYear}-${nextMonth}-${nextDay}`;
-
-        rentalDateEndInput.min = nextDate;
-        rentalDateEndInput.value = nextDate;
+        rentalDateEndInput.min = `${nextYear}-${nextMonth}-${nextDay}`;
         rentalDateEndInput.max = `${nextYear}-${nextMonth + 1}-${nextDay}`;
-        rentalDateEndInput.placeholder = nextDate;
     }
 });
 

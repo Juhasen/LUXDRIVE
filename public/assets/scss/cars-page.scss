@@ -1,9 +1,5 @@
 @use "utils" as *;
 
-$card-width: 100%;
-$bar-width: 95%;
-$sidebar-width: 10%;
-
 .main-container {
   display: flex;
   flex-direction: row;
