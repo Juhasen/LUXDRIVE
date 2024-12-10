@@ -38,6 +38,12 @@ $bar-width: 95%;
     display: none;
   }
 
+  .car-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out; // Smooth transition for sliding effect
+    overflow-x: hidden;
+  }
+
 
   .slider-container {
     width: 100%;
@@ -47,6 +53,7 @@ $bar-width: 95%;
     justify-content: center;
     gap: 60px;
     align-items: center;
+    overflow-x: hidden;
 
     .slide-button {
       background-color: $color-medium-gray;

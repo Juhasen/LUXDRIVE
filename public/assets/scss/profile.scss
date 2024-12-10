@@ -1,5 +1,165 @@
 @use "utils" as *;
 
 .profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 20px;
+  padding: 20px;
   color: $color_white;
+  width: 100%;
+
+  h3 {
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .rentals {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $color-white;
+      text-align: center;
+    }
+
+    .rentals-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 40px; // Space between the columns
+      justify-content: center; // Center the columns horizontally
+      text-align: left; // Ensure all text aligns to the left
+      width: 100%;
+      border-radius: $border-3xl;
+
+      .rental {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+
+
+        .rental-info {
+          position: relative;
+            bottom: 70px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; // Space between the columns
+            justify-content: center; // Center the columns horizontally
+            text-align: left; // Ensure all text aligns to the left
+            padding: 20px;
+            background-color: $color-medium-gray;
+            border-radius: $border-3xl;
+            box-shadow: $shadow-box;
+            width: 100%;
+            letter-spacing: 3px;
+
+          span {
+            font-weight: bold;
+            color: $color-gold;
+          }
+
+
+        }
+
+         img {
+            width: 100%;
+            aspect-ratio: 16 / 9; // Maintains a consistent aspect ratio
+            object-fit: cover; // Ensures the image fills the container proportionally
+            box-shadow: $shadow-box;
+            border-radius: $border-4xl;
+        }
+
+      }
+    }
+
+    .labels,
+    .values {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      p {
+        margin: 0;
+
+        span {
+          font-weight: bold;
+          color: $color-gold;
+        }
+      }
+    }
+
+    .labels p {
+      font-weight: bold;
+      color: $color-gray-lighter;
+    }
+  }
+
+  .user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    height: 100%;
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $color-white;
+      text-align: center;
+    }
+
+    .data-container {
+      display: flex;
+      gap: 40px; // Space between the columns
+      justify-content: center; // Center the columns horizontally
+      text-align: left; // Ensure all text aligns to the left
+      padding: 20px;
+      background-color: $color-transparent-dark;
+      border-radius: $border-3xl;
+      box-shadow: $shadow-box;
+    }
+
+    .labels,
+    .values {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      p {
+        margin: 0;
+
+        span {
+          font-weight: bold;
+          color: $color-gold;
+        }
+      }
+    }
+
+    .labels p {
+      font-weight: bold;
+      color: $color-gray-lighter;
+    }
+  }
+}
+
+.logout-button {
+  position: absolute;
+  top: 120px;
+  right: 15px;
 }

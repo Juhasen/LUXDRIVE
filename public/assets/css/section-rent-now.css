@@ -52,7 +52,7 @@
   background-position: center;
   padding: 60px 20px;
   width: 100%;
-  min-height: 70vh;
+  min-height: 50vh;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -72,49 +72,6 @@
 .section-rent-now * {
   position: relative;
   z-index: 2;
-}
-.section-rent-now .price-summary-box {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
-  bottom: -10%;
-  z-index: 30;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
-}
-.section-rent-now .price-summary-box.show {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.section-rent-now .price-summary-box h3 {
-  font-weight: normal;
-  color: #e8ac3a;
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  letter-spacing: 10px;
-}
-.section-rent-now .price-summary-box p {
-  font-size: x-large;
-  margin-bottom: 10px;
-  color: #e8ac3a;
-}
-.section-rent-now .price-summary-box strong {
-  color: #646464;
-  font-weight: bold;
-}
-.section-rent-now .price-summary-box button {
-  font-size: 1.5rem;
 }
 .section-rent-now .h-rent-now {
   font-size: large;
@@ -144,6 +101,7 @@
   font-weight: bold;
   font-size: medium;
   height: 100%; /* Ensure the rental-bar takes up the full height */
+  width: 90%;
 }
 @media screen and (max-width: 1490px) {
   .section-rent-now .rental-bar {

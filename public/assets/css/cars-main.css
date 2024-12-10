@@ -76,6 +76,11 @@
 .section-cars .car-slider .car-card:not(.car-card:first-child) {
   display: none;
 }
+.section-cars .car-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  overflow-x: hidden;
+}
 .section-cars .slider-container {
   width: 100%;
   display: flex;
@@ -84,6 +89,7 @@
   justify-content: center;
   gap: 60px;
   align-items: center;
+  overflow-x: hidden;
 }
 .section-cars .slider-container .slide-button {
   background-color: #2e2f2e;

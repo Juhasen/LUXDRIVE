@@ -253,4 +253,56 @@
     }
   }
 
+  .price-summary-box {
+    display: flex;
+    flex-direction: column;
+    background-color: $color-transparent-dark;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 8px;
+    box-shadow: $shadow-box-light;
+    z-index: 30;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+
+    // Start with hidden, invisible state
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px); // Start slightly off screen
+
+    // Animate visibility, opacity, and transform
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
+
+    &.show {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0); // Move to final position
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    h3 {
+      font-weight: normal;
+      color: $color-gold;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      letter-spacing: 10px;
+    }
+    p {
+      font-size: x-large;
+      margin-bottom: 10px;
+      color: $color-gold;
+    }
+    strong {
+      color: $color-gray-lighter;
+      font-weight: bold;
+    }
+
+    button {
+      font-size: 1.5rem;
+    }
+  }
+
 }

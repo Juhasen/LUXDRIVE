@@ -261,5 +261,49 @@
 .rent-car-container .rental-form input[type=date]:focus {
   border-color: #e8ac3a;
 }
+.rent-car-container .price-summary-box {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
+  z-index: 30;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
+}
+.rent-car-container .price-summary-box.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.rent-car-container .price-summary-box h3 {
+  font-weight: normal;
+  color: #e8ac3a;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  letter-spacing: 10px;
+}
+.rent-car-container .price-summary-box p {
+  font-size: x-large;
+  margin-bottom: 10px;
+  color: #e8ac3a;
+}
+.rent-car-container .price-summary-box strong {
+  color: #646464;
+  font-weight: bold;
+}
+.rent-car-container .price-summary-box button {
+  font-size: 1.5rem;
+}
 
 /*# sourceMappingURL=rent_car.css.map */

@@ -171,7 +171,7 @@
   background-position: center;
   padding: 60px 20px;
   width: 100%;
-  min-height: 70vh;
+  min-height: 50vh;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -191,49 +191,6 @@
 .section-rent-now * {
   position: relative;
   z-index: 2;
-}
-.section-rent-now .price-summary-box {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
-  bottom: -10%;
-  z-index: 30;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
-}
-.section-rent-now .price-summary-box.show {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.section-rent-now .price-summary-box h3 {
-  font-weight: normal;
-  color: #e8ac3a;
-  font-size: 1.5em;
-  margin-bottom: 15px;
-  letter-spacing: 10px;
-}
-.section-rent-now .price-summary-box p {
-  font-size: x-large;
-  margin-bottom: 10px;
-  color: #e8ac3a;
-}
-.section-rent-now .price-summary-box strong {
-  color: #646464;
-  font-weight: bold;
-}
-.section-rent-now .price-summary-box button {
-  font-size: 1.5rem;
 }
 .section-rent-now .h-rent-now {
   font-size: large;
@@ -263,6 +220,7 @@
   font-weight: bold;
   font-size: medium;
   height: 100%; /* Ensure the rental-bar takes up the full height */
+  width: 90%;
 }
 @media screen and (max-width: 1490px) {
   .section-rent-now .rental-bar {
@@ -605,7 +563,147 @@ header .icons-container img:hover {
 }
 
 .profile-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 20px;
+  padding: 20px;
   color: #fff;
+  width: 100%;
+}
+.profile-container h3 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+}
+.profile-container .rentals {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+}
+.profile-container .rentals h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+.profile-container .rentals .rentals-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  text-align: left;
+  width: 100%;
+  border-radius: 1.5rem;
+}
+.profile-container .rentals .rentals-container .rental {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+.profile-container .rentals .rentals-container .rental .rental-info {
+  position: relative;
+  bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  text-align: left;
+  padding: 20px;
+  background-color: #2e2f2e;
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  letter-spacing: 3px;
+}
+.profile-container .rentals .rentals-container .rental .rental-info span {
+  font-weight: bold;
+  color: #e8ac3a;
+}
+.profile-container .rentals .rentals-container .rental img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 2rem;
+}
+.profile-container .rentals .labels,
+.profile-container .rentals .values {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-container .rentals .labels p,
+.profile-container .rentals .values p {
+  margin: 0;
+}
+.profile-container .rentals .labels p span,
+.profile-container .rentals .values p span {
+  font-weight: bold;
+  color: #e8ac3a;
+}
+.profile-container .rentals .labels p {
+  font-weight: bold;
+  color: #646464;
+}
+.profile-container .user-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  height: 100%;
+}
+.profile-container .user-data h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+.profile-container .user-data .data-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  text-align: left;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.profile-container .user-data .labels,
+.profile-container .user-data .values {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-container .user-data .labels p,
+.profile-container .user-data .values p {
+  margin: 0;
+}
+.profile-container .user-data .labels p span,
+.profile-container .user-data .values p span {
+  font-weight: bold;
+  color: #e8ac3a;
+}
+.profile-container .user-data .labels p {
+  font-weight: bold;
+  color: #646464;
+}
+
+.logout-button {
+  position: absolute;
+  top: 120px;
+  right: 15px;
 }
 
 .section-cars {
@@ -639,6 +737,11 @@ header .icons-container img:hover {
 .section-cars .car-slider .car-card:not(.car-card:first-child) {
   display: none;
 }
+.section-cars .car-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  overflow-x: hidden;
+}
 .section-cars .slider-container {
   width: 100%;
   display: flex;
@@ -647,6 +750,7 @@ header .icons-container img:hover {
   justify-content: center;
   gap: 60px;
   align-items: center;
+  overflow-x: hidden;
 }
 .section-cars .slider-container .slide-button {
   background-color: #2e2f2e;
@@ -1408,6 +1512,50 @@ header .icons-container img:hover {
 }
 .rent-car-container .rental-form input[type=date]:focus {
   border-color: #e8ac3a;
+}
+.rent-car-container .price-summary-box {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
+  z-index: 30;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0s linear 0.5s;
+}
+.rent-car-container .price-summary-box.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.rent-car-container .price-summary-box h3 {
+  font-weight: normal;
+  color: #e8ac3a;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  letter-spacing: 10px;
+}
+.rent-car-container .price-summary-box p {
+  font-size: x-large;
+  margin-bottom: 10px;
+  color: #e8ac3a;
+}
+.rent-car-container .price-summary-box strong {
+  color: #646464;
+  font-weight: bold;
+}
+.rent-car-container .price-summary-box button {
+  font-size: 1.5rem;
 }
 
 @font-face {

@@ -1,83 +1,5 @@
-<div class="main-slider">
-    <!-- Slide 1 -->
-    <div class="background" id="background"
-         style="background-image: url('../public/assets/images/background-audi.jpg');">
-        <div class="container">
-            <p class="premium">. PREMIUM</p>
-            <h1>Audi R8</h1>
-            <p class="car-details">
-                <span class="car-name">Egzotyczny</span>
-                <span class="price">
-                    <span class="price-amount">3000zł</span>
-                    <span class="price-unit">/Doba</span>
-                </span>
-            </p>
-            <div class="main-button-container">
-                <button class="view-detail-button" onclick="window.location.href='../public/index.php?page=cars&car_id=20'">
-                    Pokaż Szczegóły
-                    <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
-                </button>
-                <button class="rent-now-button">
-                    Wypożycz Teraz
-                    <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- Slide 2 -->
-    <div class="background" id="background"
-         style="background-image: url('../public/assets/images/background-ferrari.jpg');">
-        <div class="container">
-            <p class="premium">. PREMIUM</p>
-            <h1>Ferrari LaFerrari</h1>
-            <p class="car-details">
-                <span class="car-name">Luksusowy</span>
-                <span class="price">
-                    <span class="price-amount">5000zł</span>
-                    <span class="price-unit">/Doba</span>
-                </span>
-            </p>
-            <div class="main-button-container">
-                <button class="view-detail-button" onclick="window.location.href='../public/index.php?page=cars&car_id=17'">
-                    Pokaż Szczegóły
-                    <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
-                </button>
-                <button class="rent-now-button">
-                    Wypożycz Teraz
-                    <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- Slide 3 -->
-    <div class="background" id="background"
-         style="background-image: url('../public/assets/images/background-lamborghini.jpg');">
-        <div class="container">
-            <p class="premium">. PREMIUM</p>
-            <h1>Lamborghini Huracan</h1>
-            <p class="car-details">
-                <span class="car-name">Egzotyczny</span>
-                <span class="price">
-                    <span class="price-amount">7000zł</span>
-                    <span class="price-unit">/Doba</span>
-                </span>
-            </p>
-            <div class="main-button-container">
-                <button class="view-detail-button" onclick="window.location.href='../public/index.php?page=cars&car_id=18'">
-                    Pokaż Szczegóły
-                    <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
-                </button>
-                <button class="rent-now-button">
-                    Wypożycz Teraz
-                    <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <?php
-require_once('../controllers/functions.php');
+require('../controllers/functions.php');
 $config = require '../config/database.php';
 
 $conn = new mysqli(
@@ -91,12 +13,59 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch the cars with IDs 17, 18, and 19
+$sql = "SELECT * FROM Vehicles WHERE id IN (17, 18, 19)";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $cars = $result->fetch_all(MYSQLI_ASSOC); // Fetch all the rows as an associative array
+} else {
+    $cars = [];
+}
+?>
+
+<div class="main-slider">
+    <?php foreach ($cars as $car): ?>
+        <div class="background" id="background"
+             style="background-image: url('../public/assets/images/<?php echo trim(htmlspecialchars($car['image'])); ?>');">
+            <div class="container">
+                <p class="premium">. PREMIUM</p>
+                <h1><?php echo trim(htmlspecialchars($car['make'])) . ' ' . trim(htmlspecialchars($car['model'])); ?></h1>
+                <p class="car-details">
+                    <span class="car-name">
+                        <?php
+                        echo trim(htmlspecialchars($car['type'] === 'Sports' ? 'Sportowe' : $car['type']));
+                        ?>
+                    </span>
+                    <span class="price">
+                    <span class="price-amount"><?php echo trim(htmlspecialchars($car['price'])); ?>zł</span>
+                    <span class="price-unit">/Doba</span>
+                </span>
+                </p>
+                <div class="main-button-container">
+                    <button class="view-detail-button"
+                            onclick="window.location.href='../public/index.php?page=cars&car_id=<?php echo $car['id']; ?>'">
+                        Pokaż Szczegóły
+                        <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
+                    </button>
+                    <button class="rent-now-button"
+                            onclick="window.location.href='../public/index.php?page=rent_car&car_id=<?php echo $car['id']; ?>'">
+                        Wypożycz Teraz
+                        <i class="fas fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+<?php
 $type = $_POST['type'] ?? 'Luxury';
 $sql = "SELECT * FROM vehicles WHERE type = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $type);
 $stmt->execute();
 $result = $stmt->get_result();
+$conn->close();
 ?>
 
 <div class="vertical-line-container">
@@ -171,7 +140,10 @@ $result = $stmt->get_result();
             <h3>Luksusowe</h3>
             <div class="arrow-button-container">
                 <button class="arrow-button" id="navigateButtonLuxury">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                         fill="#e8eaed">
+                        <path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/>
+                    </svg>
                 </button>
             </div>
 
@@ -181,7 +153,10 @@ $result = $stmt->get_result();
             <h3>Sportowe</h3>
             <div class="arrow-button-container">
                 <button class="arrow-button" id="navigateButtonSports">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                         fill="#e8eaed">
+                        <path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -190,7 +165,10 @@ $result = $stmt->get_result();
             <h3>SUV</h3>
             <div class="arrow-button-container">
                 <button class="arrow-button" id="navigateButtonSUV">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                         fill="#e8eaed">
+                        <path d="M206.67-160 160-206.67l486.67-486.66h-284V-760H760v397.33h-66.67v-284L206.67-160Z"/>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -220,7 +198,7 @@ $result = $stmt->get_result();
             <p>Nasza strona zapewni Ci płynne zarezerwowanie samochodu lub skontaktowanie się z nami.</p>
             <div class="step-counter-container">
                 <button class="step">
-                   02.
+                    02.
                 </button>
             </div>
         </div>
