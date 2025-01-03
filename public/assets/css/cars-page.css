@@ -60,6 +60,7 @@
 .sidebar {
   width: 10%;
   min-width: 150px;
+  height: fit-content;
   margin-left: 10px;
   display: flex;
   flex-direction: column;
@@ -81,6 +82,7 @@
   margin-bottom: 20px;
 }
 .sidebar form .filter-group label {
+  font-size: medium;
   display: block;
   margin-bottom: 10px;
   font-weight: bold;

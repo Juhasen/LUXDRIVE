@@ -52,7 +52,11 @@
 }
 .main-container .cart {
   display: flex;
+  width: 100vw;
   flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  justify-items: start;
   color: #fff;
 }
 .main-container .cart h1 {
@@ -65,33 +69,34 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
+  padding: 0 20px;
 }
 .main-container .cart .cart-container p {
   text-align: center;
   font-size: 1.2rem;
   color: #646464;
 }
-.main-container .cart .cart-container ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-}
-.main-container .cart .cart-container ul li {
+.main-container .cart .cart-container .cart-elem {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
   padding: 20px;
   background-color: #2e2f2e;
   border-radius: 1.5rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-.main-container .cart .cart-container ul li strong {
+.main-container .cart .cart-container .cart-elem ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+.main-container .cart .cart-container .cart-elem ul strong {
   font-size: 1rem;
   color: #e8ac3a;
 }
-.main-container .cart .cart-container ul li form {
+.main-container .cart .cart-container .cart-elem ul form {
   margin-top: 10px;
 }
 

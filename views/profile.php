@@ -1,4 +1,5 @@
 <?php
+require '../controllers/functions.php';
 require_once '../controllers/constants.php';
 session_start();
 $_SESSION['valid'] = true;
@@ -7,9 +8,6 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: " . BASE_REDIRECT_URL . "home");
     exit;
 }
-
-require '../config/database.php';
-
 
 $conn = connectToDatabase();
 

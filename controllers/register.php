@@ -1,20 +1,13 @@
 <?php
 require_once '../controllers/constants.php';
+require_once '../controllers/database.php';
 session_start();
 
-$config = require '../config/database.php';
+
 
 // Establish a database connection
-$conn = new mysqli(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['database']
-);
+$conn = connectToDatabase();
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Retrieve the form data
 $name = $_POST['name'] ?? '';
@@ -74,4 +67,4 @@ if ($stmt->execute()) {
 }
 
 $stmt->close();
-$conn->close();
+closeConnection($conn);

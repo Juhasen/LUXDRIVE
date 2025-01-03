@@ -7,7 +7,11 @@
 
   .cart {
     display: flex;
+    width: 100vw;
     flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    justify-items: start;
     color: $color-white;
 
 
@@ -22,6 +26,7 @@
       flex-direction: column;
       gap: 20px;
       width: 100%;
+      padding: 0 20px;
 
       p {
         text-align: center;
@@ -29,21 +34,21 @@
         color: $color-gray-lighter;
       }
 
-      ul {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      .cart-elem {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 20px;
-        list-style: none;
-        padding: 0;
+        padding: 20px;
+        background-color: $color-medium-gray;
+        border-radius: $border-3xl;
+        box-shadow: $shadow-box;
 
-        li {
+        ul {
           display: flex;
           flex-direction: column;
           gap: 10px;
           padding: 20px;
-          background-color: $color-medium-gray;
-          border-radius: $border-3xl;
-          box-shadow: $shadow-box;
 
           strong {
             font-size: 1rem;
@@ -57,5 +62,4 @@
       }
     }
   }
-
 }

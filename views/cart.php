@@ -21,10 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Get the current cart
 $cart = $_SESSION['cart'];
-
-
 
 ?>
 
@@ -38,22 +35,22 @@ $cart = $_SESSION['cart'];
                 <?php if (empty($cart)): ?>
                     <p>Twój koszyk jest pusty.</p>
                 <?php else: ?>
-                    <ul>
-                        <?php foreach ($cart as $index => $item): ?>
-                            <li>
-                                <strong>Samochód:</strong> <?php echo htmlspecialchars($item['vehicleId']); ?> <br>
-                                <strong>Odbiór:</strong> <?php echo htmlspecialchars($item['pickUpLocation']); ?> <br>
-                                <strong>Zwrot:</strong> <?php echo htmlspecialchars($item['dropOffLocation']); ?> <br>
-                                <strong>Od:</strong> <?php echo htmlspecialchars($item['rentalDateStart']); ?> <br>
-                                <strong>Do:</strong> <?php echo htmlspecialchars($item['rentalDateEnd']); ?> <br>
-                                <form method="POST" style="display: inline;">
-                                    <input type="hidden" name="action" value="remove">
-                                    <input type="hidden" name="index" value="<?php echo $index; ?>">
-                                    <button type="submit" class="secondary-button">Usuń</button>
-                                </form>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
+                    <?php foreach ($cart as $index => $item): ?>
+                    <div class="cart-elem">
+                        <strong>Samochód:</strong> <?php echo htmlspecialchars($item['vehicleId']); ?> <br>
+                        <ul>
+                            <strong>Odbiór:</strong> <?php echo htmlspecialchars($item['pickUpLocation']); ?> <br>
+                            <strong>Zwrot:</strong> <?php echo htmlspecialchars($item['dropOffLocation']); ?> <br>
+                            <strong>Od:</strong> <?php echo htmlspecialchars($item['rentalDateStart']); ?> <br>
+                            <strong>Do:</strong> <?php echo htmlspecialchars($item['rentalDateEnd']); ?> <br>
+                            <form method="POST" style="display: inline;">
+                                <input type="hidden" name="action" value="remove">
+                                <input type="hidden" name="index" value="<?php echo $index; ?>">
+                                <button type="submit" class="secondary-button">Usuń</button>
+                            </form>
+                        </ul>
+                    </div>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
         <?php endif; ?>

@@ -1,6 +1,6 @@
 <?php
 require_once '../controllers/constants.php';
-require_once '../controllers/functions.php';
+require_once '../controllers/database.php';
 
 session_start();
 $_SESSION['valid']= true;

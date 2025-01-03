@@ -75,7 +75,7 @@ $result = getFilteredCars($_GET);
 
             <div class="filter-group">
                 <label for="price">Max Cena (zł)</label>
-                <input type="number" name="price" id="price" placeholder="Np. 5000"
+                <input type="number" name="price" id="price" placeholder="Np. 5000" min="0"
                        value="<?php echo isset($_GET['price']) ? htmlspecialchars($_GET['price']) : ''; ?>">
             </div>
             <div class="filter-group">

@@ -17,6 +17,8 @@
 .sidebar {
   width: $sidebar-width;
   min-width: 150px;
+  height: fit-content;
+
   margin-left: 10px;
   display: flex;
   flex-direction: column;
@@ -42,6 +44,7 @@
 
 
       label {
+        font-size: medium;
         display: block;
         margin-bottom: 10px;
         font-weight: bold;

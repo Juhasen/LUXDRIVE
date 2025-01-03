@@ -10,7 +10,6 @@ $conn = connectToDatabase();
 $isLoggedIn = isset($_SESSION['user_id']);
 
 if ($isLoggedIn) {
-    //fetch all data of user using prepare
     $user_id = $_SESSION['user_id'];
     $stmt = $conn->prepare("SELECT * FROM Users WHERE user_id = ?");
     $stmt->bind_param("i", $user_id);

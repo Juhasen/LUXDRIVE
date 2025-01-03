@@ -1,19 +1,10 @@
 ﻿<?php
 
+require_once 'database.php';
+
 function getFilteredCars($filters)
 {
-    $config = require '../config/database.php';
-
-    $conn = new mysqli(
-        $config['host'],
-        $config['username'],
-        $config['password'],
-        $config['database']
-    );
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $conn = connectToDatabase();
 
     // Base SQL query
     $sql = "SELECT * FROM Vehicles WHERE 1=1";
@@ -47,7 +38,7 @@ function getFilteredCars($filters)
 
     $result = $conn->query($sql);
 
-    $conn->close();
+    closeConnection($conn);
 
     return $result;
 }
