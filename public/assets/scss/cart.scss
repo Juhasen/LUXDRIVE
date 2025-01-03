@@ -1,0 +1,61 @@
+﻿@use "utils" as *;
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  .cart {
+    display: flex;
+    flex-direction: column;
+    color: $color-white;
+
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .cart-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+
+      p {
+        text-align: center;
+        font-size: 1.2rem;
+        color: $color-gray-lighter;
+      }
+
+      ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+
+        li {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 20px;
+          background-color: $color-medium-gray;
+          border-radius: $border-3xl;
+          box-shadow: $shadow-box;
+
+          strong {
+            font-size: 1rem;
+            color: $color-gold;
+          }
+
+          form {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+}

@@ -1,7 +1,8 @@
 ﻿<?php
+require_once '../controllers/constants.php';
 session_start();
 if (isset($_SESSION['user_id'])) {
-    header("Location: http://localhost:63342/LUXDRIVE/public/index.php?page=profile");
+    header("Location: " . BASE_REDIRECT_URL . "profile");
     exit;
 }
 ?>
@@ -80,7 +81,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="register-buttons">
                     <button class="submit-button primary-button">Zarejestruj się</button>
                     <button class="back-to-login secondary-button">
-                        <a href="http://localhost:63342/LUXDRIVE/public/index.php?page=login">Powrót do logowania</a>
+                        <a href="https://luxdrive.pl/public/index.php?page=login">Powrót do logowania</a>
                     </button>
                 </div>
 

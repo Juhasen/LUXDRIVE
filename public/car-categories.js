@@ -1,11 +1,11 @@
 ﻿document.getElementById('navigateButtonLuxury').addEventListener('click', function () {
-    window.location.href = 'http://localhost:63342/LUXDRIVE/public/index.php?page=cars&gearbox=&car_type=Luxury&seats=&price=';
+    window.location.href = '../index.php';
 });
 
 document.getElementById('navigateButtonSports').addEventListener('click', function () {
-    window.location.href = 'http://localhost:63342/LUXDRIVE/public/index.php?page=cars&gearbox=&car_type=Sports&seats=&price=';
+    window.location.href = '../index.php';
 });
 
 document.getElementById('navigateButtonSUV').addEventListener('click', function () {
-    window.location.href = 'http://localhost:63342/LUXDRIVE/public/index.php?page=cars&gearbox=&car_type=SUV&seats=&price=';
+    window.location.href = '../index.php';
 });

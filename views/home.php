@@ -1,17 +1,8 @@
 <?php
 require('../controllers/functions.php');
-$config = require '../config/database.php';
 
-$conn = new mysqli(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['database']
-);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$conn = connectToDatabase();
 
 // Fetch the cars with IDs 17, 18, and 19
 $sql = "SELECT * FROM Vehicles WHERE id IN (17, 18, 19)";
@@ -27,7 +18,7 @@ if ($result->num_rows > 0) {
 <div class="main-slider">
     <?php foreach ($cars as $car): ?>
         <div class="background" id="background"
-             style="background-image: url('../public/assets/images/<?php echo trim(htmlspecialchars($car['image'])); ?>');">
+             style="background-image: url('../public/assets/images/background-<?php echo trim(htmlspecialchars($car['image'])); ?>');">
             <div class="container">
                 <p class="premium">. PREMIUM</p>
                 <h1><?php echo trim(htmlspecialchars($car['make'])) . ' ' . trim(htmlspecialchars($car['model'])); ?></h1>
@@ -65,7 +56,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $type);
 $stmt->execute();
 $result = $stmt->get_result();
-$conn->close();
+closeConnection($conn);
 ?>
 
 <div class="vertical-line-container">

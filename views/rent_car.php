@@ -1,19 +1,11 @@
 ﻿<?php
+require_once '../controllers/functions.php';
 session_start();
 require '../config/database.php';
 
-// Connect to the database
-$config = require '../config/database.php';
-$conn = new mysqli(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['database']
-);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$conn = connectToDatabase();
+
 // Check if the user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 
@@ -40,7 +32,7 @@ if ($result->num_rows === 0) {
 
 $car = $result->fetch_assoc();
 $gearbox = $car['gearbox_type'] == 2 ? 'Automat' : 'Manual';
-$conn->close();
+closeConnection($conn);
 ?>
 
 
@@ -124,7 +116,7 @@ $conn->close();
         <section class="section-rent-now">
             <h2 class="h-rent-now">WYPOŻYCZ TERAZ</h2>
             <h1 class="h-book-now">Zarezerwuj Swój Samochód</h1>
-            <form action="../controllers/process_rental.php" method="POST" class="rental-bar" id="rental-form">
+            <form action="../controllers/cart.php" method="POST" class="rental-bar" id="rental-form">
                 <input type="hidden" name="vehicle_id" id="vehicle_id" value="<?php echo htmlspecialchars($car_id); ?>">
                 <div class="rental-bar-item">
                     <label for="pick-up-location">Miejsce Wynajmu</label>
@@ -182,10 +174,8 @@ $conn->close();
             </form>
         </section>
         <div class="price-summary-box">
-            <h3>PODSUMOWANIE</h3>
-            <p><strong>Cena:</strong> <span id="total-price"></span></p>
-
-            <button class="primary-button submit-button" type="submit" id="submit-button">Wypożycz Teraz</button>
+            <h3>PRZEJDŹ DALEJ</h3>
+            <button class="primary-button submit-button" type="submit" id="submit-button">DODAJ DO KOSZYKA</button>
         </div>
 
     <?php endif; ?>
@@ -202,21 +192,20 @@ $conn->close();
         const startDate = document.getElementById('rental-date-start').value;
         const endDate = document.getElementById('rental-date-end').value;
 
-        // Ensure both dates are selected
+
         if (startDate && endDate) {
             const start = new Date(startDate);
             const end = new Date(endDate);
 
-            // Calculate the number of days between the two dates
+
             const timeDiff = end - start;
             let days = timeDiff / (1000 * 3600 * 24); // Convert milliseconds to days
 
-            // Ensure it's at least one day
+
             if (days < 1) {
                 days = 1;
             }
 
-            // Calculate the total price
             const totalPrice = carPrice * days;
             console.log(totalPrice);
 

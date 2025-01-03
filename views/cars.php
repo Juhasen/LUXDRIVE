@@ -89,7 +89,6 @@ $result = getFilteredCars($_GET);
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $gearbox = $row['gearbox_type'] == 2 ? 'Automat' : 'Manual';
                 ?>
                 <div class="car-card">
                     <img src="../public/assets/images/<?php echo htmlspecialchars($row['image']); ?>"
@@ -102,7 +101,7 @@ $result = getFilteredCars($_GET);
                             <img src="../public/assets/icons/car-seat.png" alt="Seats"> <?php echo htmlspecialchars($row['seats']); ?>
                         </span>
                                 <span class="detail-icon">
-                            <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> <?php echo htmlspecialchars($gearbox); ?>
+                            <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> <?php echo htmlspecialchars($row['gearbox_type']); ?>
                         </span>
                                 <span class="detail-icon">
                             <img src="../public/assets/icons/luggage.png" alt="Luggage"> <?php echo htmlspecialchars($row['luggage']); ?>

@@ -1,22 +1,17 @@
 <?php
+require_once '../controllers/constants.php';
 session_start();
 $_SESSION['valid'] = true;
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: http://localhost:63342/LUXDRIVE/public/index.php?page=home");
+    header("Location: " . BASE_REDIRECT_URL . "home");
     exit;
 }
 
 require '../config/database.php';
 
-// Connect to the database
-$config = require '../config/database.php';
-$conn = new mysqli(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['database']
-);
+
+$conn = connectToDatabase();
 
 $user_id = $_SESSION['user_id'];
 
@@ -29,7 +24,7 @@ $user = $result->fetch_assoc();
 $stmt->close();
 
 // Get rentals with vehicle details
-$stmt = $conn->prepare("SELECT Rentals.*, Vehicles.make AS vehicle_name, vehicles.model AS vehicle_model , Vehicles.image AS vehicle_photo 
+$stmt = $conn->prepare("SELECT Rentals.*, Vehicles.make AS vehicle_name, Vehicles.model AS vehicle_model , Vehicles.image AS vehicle_photo 
                         FROM Rentals 
                         JOIN Vehicles ON Rentals.vehicle_id = Vehicles.id 
                         WHERE Rentals.user_id = ?");
@@ -37,6 +32,7 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $rental_result = $stmt->get_result();
 $stmt->close();
+closeConnection($conn);
 ?>
 
 <div class="main-container">

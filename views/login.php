@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['user_id'])) {
-    header("Location: http://localhost:63342/LUXDRIVE/public/index.php?page=profile");
+    header("Location: https://luxdrive.pl/public/index.php?page=profile");
     exit;
 }
 ?>
@@ -23,7 +23,8 @@ if (isset($_SESSION['user_id'])) {
                         <img src="../public/assets/icons/eye-icon.png" alt="Show password">
                     </button>
                 </div>
-                <h4 class="form-info">Nie masz konta? <a href="http://localhost:63342/LUXDRIVE/public/index.php?page=register">Zarejestruj się</a></h4>
+                <h4 class="form-info">Nie masz konta? <a href="https://luxdrive.pl/public/index.php?page=register">Zarejestruj
+                        się</a></h4>
                 <button type="submit" class="submit-button primary-button">Zaloguj się</button>
 
             </form>

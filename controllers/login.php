@@ -1,18 +1,11 @@
 <?php
+require_once '../controllers/constants.php';
+require_once '../controllers/functions.php';
+
 session_start();
 $_SESSION['valid']= true;
-$config = require '../config/database.php';
 
-$conn = new mysqli(
-    $config['host'],
-    $config['username'],
-    $config['password'],
-    $config['database']
-);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$conn = connectToDatabase();
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -34,7 +27,7 @@ if ($stmt->num_rows > 0) {
         $_SESSION['user_name'] = $name;
         $_SESSION['user_email'] = $email;
 
-        header("Location: http://localhost:63342/LUXDRIVE/public/index.php?page=profile");
+        header("Location: " . BASE_REDIRECT_URL . 'profile');
         exit;
     } else {
         echo "<h1>Invalid username or password!</h1>";
@@ -44,4 +37,4 @@ if ($stmt->num_rows > 0) {
 }
 
 $stmt->close();
-$conn->close();
+closeConnection($conn);

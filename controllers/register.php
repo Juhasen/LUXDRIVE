@@ -1,4 +1,5 @@
 <?php
+require_once '../controllers/constants.php';
 session_start();
 
 $config = require '../config/database.php';
@@ -66,7 +67,7 @@ if ($stmt->execute()) {
     $_SESSION['user_email'] = $email;
 
     // Redirect to the user profile page
-    header("Location: http://localhost:63342/LUXDRIVE/public/index.php?page=profile");
+    header("Location: " . BASE_REDIRECT_URL . 'profile');
     exit;
 } else {
     echo "<h1>Registration failed. Please try again.</h1>";

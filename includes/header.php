@@ -11,7 +11,8 @@
 <body>
 <?php
 $page = $_GET['page'] ?? 'home';
-$base_url = '../public/index.php';
+$base_url = '/public/index.php';
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -30,7 +31,7 @@ error_reporting(E_ALL);
     </nav>
 
     <div class="icons-container">
-        <img src="../public/assets/icons/shopping_cart.svg" alt="cart">
+        <a href="<?php echo $base_url; ?>?page=cart"> <img src="../public/assets/icons/shopping_cart.svg" alt="cart"></a>
         <a href="<?php echo $base_url; ?>?page=login"> <img src="../public/assets/icons/user.svg" alt="user"></a>
     </div>
 </header>

@@ -1558,6 +1558,56 @@ header .icons-container img:hover {
   font-size: 1.5rem;
 }
 
+.main-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.main-container .cart {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+.main-container .cart h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+.main-container .cart .cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.main-container .cart .cart-container p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #646464;
+}
+.main-container .cart .cart-container ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+.main-container .cart .cart-container ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background-color: #2e2f2e;
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.main-container .cart .cart-container ul li strong {
+  font-size: 1rem;
+  color: #e8ac3a;
+}
+.main-container .cart .cart-container ul li form {
+  margin-top: 10px;
+}
+
 @font-face {
   font-family: "Montserrat";
   src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
