@@ -45,28 +45,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $last_service = htmlspecialchars(trim($_POST['last_service']));
     $license_plate = htmlspecialchars(trim($_POST['license_plate']));
 
-    if (isset($_FILES['car_image'])) {
+    if (!isset($_FILES['car_image']) || $_FILES['car_image']['error'] == UPLOAD_ERR_NO_FILE) {
+        // No file uploaded, skip the file handling block
+        $update_result = update_car($car_id, $make, $model, $year, $price, $seats, $gearbox, $luggage, $type, $odometer, $vin, $location, $last_service, $license_plate, null);
+    } else {
+        // Process file upload
         $file_tmp = $_FILES['car_image']['tmp_name'];
         $file_name = $_FILES['car_image']['name'];
         $target_dir = '../public/assets/images/';
         $target_file = $target_dir . basename($file_name);
         $image_extension = pathinfo($file_name, PATHINFO_EXTENSION);
         $new_file_name = uniqid('car_', true) . '.' . $image_extension;
-
+        sleep(3);
         if (move_uploaded_file($file_tmp, $target_dir . $new_file_name)) {
             $old_image = $car['image'];
             $update_result = update_car($car_id, $make, $model, $year, $price, $seats, $gearbox, $luggage, $type, $odometer, $vin, $location, $last_service, $license_plate, $new_file_name);
             if ($update_result && file_exists($target_dir . $old_image)) {
                 unlink($target_dir . $old_image);
             }
-            echo $car['image'];
-
         } else {
             $error_message = "Wystąpił błąd podczas przesyłania pliku.";
         }
-    } else {
-        // If no new image is uploaded, update the car without changing the image
-        $update_result = update_car($car_id, $make, $model, $year, $price, $seats, $gearbox, $luggage, $type, $odometer, $vin, $location, $last_service, $license_plate, $car['image']);
     }
 
     if ($update_result) {
@@ -168,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="last_service">Ostatnia usługa:</label>
+                        <label for="last_service">Ostatni serwis:</label>
                         <input type="date" id="last_service" name="last_service"
                                value="<?php echo htmlspecialchars($car['last_service']); ?>" required>
                     </div>
@@ -203,7 +202,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <p><strong>Cena (za dzień):</strong> <?php echo number_format($car['price'], 0); ?> zł</p>
                         <p><strong>Liczba miejsc:</strong> <?php echo htmlspecialchars($car['seats']); ?></p>
                         <p><strong>Skrzynia biegów:</strong> <?php echo htmlspecialchars($car['gearbox_type']); ?></p>
-                        <p><strong>Pojemność bagażnika:</strong> <?php echo htmlspecialchars($car['luggage']); ?> L</p>
+                        <p><strong>Pojemność bagażnika:</strong> <?php echo htmlspecialchars($car['luggage']); ?></p>
                         <p><strong>Przebieg:</strong> <?php echo htmlspecialchars($car['odometer']); ?> km</p>
                         <p><strong>VIN:</strong> <?php echo htmlspecialchars($car['vin']); ?></p>
                         <p><strong>Lokalizacja:</strong> <?php echo htmlspecialchars($car['location']); ?></p>

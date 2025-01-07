@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-group">
                     <label for="odometer">Przebieg:</label>
-                    <input type="number" id="odometer" name="odometer" required>
+                    <input type="number" id="odometer" name="odometer" min="0" required>
                 </div>
                 <div class="form-group">
                     <label for="vin">VIN:</label>
@@ -117,10 +117,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-group">
                     <label for="location">Lokalizacja:</label>
-                    <input type="text" id="location" name="location" required>
+                    <select id="location" name="location" required>
+                        <option value="Kraków" selected>
+                            Kraków
+                        </option>
+                        <option value="Warszawa">
+                            Warszawa
+                        </option>
+                        <option value="Gdańsk">
+                            Gdańsk
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="last_service">Ostatnia usługa:</label>
+                    <label for="last_service">Ostatni serwis:</label>
                     <input type="date" id="last_service" name="last_service" required>
                 </div>
                 <div class="form-group">

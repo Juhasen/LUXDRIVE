@@ -65,10 +65,17 @@ function delete_car($id): bool
 function update_car($id, $make, $model, $year, $price, $seats, $gearbox, $luggage, $type, $odometer, $vin, $location, $last_service, $license_plate, $image): bool
 {
     $conn = connectToDatabase();
-    $stmt = $conn->prepare("UPDATE Vehicles SET make = ?, model = ?, year = ?, price = ?, seats = ?, gearbox_type = ?, luggage = ?, type = ?, odometer = ?, vin = ?, location = ?, last_service = ?, license_plate = ?, image = ? WHERE id = ?");
-    $stmt->bind_param("ssiiisisisssssi", $make, $model, $year, $price, $seats, $gearbox, $luggage, $type, $odometer, $vin, $location, $last_service, $license_plate, $image, $id);
+    if($image != null){
+        $stmt = $conn->prepare("UPDATE Vehicles SET make = ?, model = ?, year = ?, price = ?, seats = ?, gearbox_type = ?, luggage = ?, type = ?, odometer = ?, vin = ?, location = ?, last_service = ?, license_plate = ?, image = ? WHERE id = ?");
+        $stmt->bind_param("ssiiisisisssssi", $make, $model, $year, $price, $seats, $gearbox, $luggage, $type, $odometer, $vin, $location, $last_service, $license_plate, $image, $id);
+    }
+    else{
+        $stmt = $conn->prepare("UPDATE Vehicles SET make = ?, model = ?, year = ?, price = ?, seats = ?, gearbox_type = ?, luggage = ?, type = ?, odometer = ?, vin = ?, location = ?, last_service = ?, license_plate = ? WHERE id = ?");
+        $stmt->bind_param("ssiiisisissssi", $make, $model, $year, $price, $seats, $gearbox, $luggage, $type, $odometer, $vin, $location, $last_service, $license_plate, $id);
+    }
     $result = $stmt->execute();
     $stmt->close();
+
     closeConnection($conn);
     return $result;
 }

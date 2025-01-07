@@ -152,19 +152,25 @@
     box-shadow: $shadow-box;
     color: $color-white;
     min-width: 250px;
-    height: 100%; /* Ensure the form container takes full height */
+    height: 100%;
 
     h1 {
       margin-bottom: 1rem;
       color: $color-gold;
     }
 
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
     form {
       display: grid;
-      grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+      grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
       width: 100%;
-      height: 100%; /* Ensure form takes full height */
+      height: 100%;
     }
 
     .form-column {
