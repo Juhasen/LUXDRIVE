@@ -1,0 +1,213 @@
+﻿@use "utils" as *;
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+
+}
+
+.edit-car-container {
+  display: flex;
+  flex-direction: row;
+  justify-items: start;
+  align-items: center;
+  width: 95%;
+  gap: 2rem;
+
+
+  .car-info-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: $color-transparent-dark;
+    border-radius: $border-2xl;
+    box-shadow: $shadow-box;
+    max-width: 700px;
+
+    .car-info-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $color-gold;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid $color-gold;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      letter-spacing: 5px;
+    }
+  }
+
+  .car-image {
+    flex: 1;
+
+    img {
+      width: 100%;
+      border-radius: $border-3xl;
+      box-shadow: $shadow-box;
+      object-fit: cover;
+    }
+  }
+
+  .car-info {
+    width: 100%;
+    color: $color-white;
+    position: relative;
+    bottom: 40px;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: $color-medium-gray;
+    border-radius: $border-2xl;
+    box-shadow: $shadow-box;
+
+    .car-specs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+
+      .car-name {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: $color-white;
+        margin: 0;
+        text-align: center;
+      }
+
+      .car-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        font-size: 1rem;
+        padding: 10px 0;
+
+        p {
+          margin: 0;
+        }
+
+        p strong {
+          color: $color-gold;
+        }
+
+        /* Add background color and padding for each section */
+        p {
+          background-color: $color-medium-gray;
+          padding: 5px;
+          border-radius: $border-2xl;
+          color: $color-white;
+        }
+      }
+    }
+
+    .car-price {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      color: $color-white;
+      gap: 30px;
+
+      .reserve-button {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .price {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: $color-gold;
+
+        small {
+          font-size: 1rem;
+          font-weight: normal;
+          color: $color-white;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: $color-medium-gray;
+    padding: 2rem;
+    border-radius: $border-3xl;
+    box-shadow: $shadow-box;
+    color: $color-white;
+    min-width: 250px;
+    height: 100%; /* Ensure the form container takes full height */
+
+    h1 {
+      margin-bottom: 1rem;
+      color: $color-gold;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+      gap: 1.5rem;
+      width: 100%;
+      height: 100%; /* Ensure form takes full height */
+    }
+
+    .form-column {
+      display: flex;
+      flex-direction: column;
+      height: 100%; /* Ensure each column takes full height */
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      flex-grow: 1; /* Allow form groups to expand to fill the available space */
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: $label-color;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: $input-padding;
+        border: none;
+        border-radius: $border-2xl;
+        box-shadow: $shadow-box;
+        background: $color-gray-light;
+        color: $color-white;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border: 2px solid $label-active-color;
+      }
+    }
+
+    /* For smaller screens, stack the columns into one */
+    @media (max-width: 768px) {
+      form {
+        grid-template-columns: 1fr; /* Stack the columns into one */
+      }
+    }
+  }
+}

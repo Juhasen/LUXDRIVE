@@ -1,0 +1,85 @@
+.highlight {
+  color: #e8ac3a;
+}
+
+.underline-hover {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 5px;
+  text-decoration: none;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.underline-hover:hover {
+  transform: scale(1.15);
+  transition: 300ms;
+}
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e8ac3a;
+  transition: width 0.3s ease;
+}
+.underline-hover:hover::after {
+  width: 100%;
+}
+.underline-hover.active::after {
+  width: 100%;
+  transition: none;
+}
+
+.vertical-line-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin: 0 20px;
+}
+.vertical-line-container .vertical-line {
+  width: 2px;
+  height: 80px;
+  background-color: #f5a623;
+}
+
+.success-message {
+  margin-top: 100px;
+  color: green;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid green;
+  background-color: #eaffea;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 100px;
+  color: #e8ac3a;
+}
+
+.admin-container {
+  margin-top: 20px;
+  min-height: 90vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.admin-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=admin.css.map */

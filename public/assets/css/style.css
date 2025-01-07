@@ -370,6 +370,22 @@
   background-color: #1b1a1a;
 }
 
+.delete-button {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+  border: 2px solid #000;
+}
+.delete-button:hover {
+  background-color: rgb(178.5, 0, 0);
+}
+
 header {
   position: absolute;
   display: flex;
@@ -469,7 +485,7 @@ header .icons-container img:hover {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 30;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 .login-container .login-background .form-container .form-row {
   display: flex;
@@ -578,6 +594,22 @@ header .icons-container img:hover {
   font-size: 1.7rem;
   font-weight: bold;
   text-align: center;
+}
+.profile-container .admin-panel-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: #e8ac3a;
+  color: #fff;
+  border-radius: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.5s;
+}
+.profile-container .admin-panel-link:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.4);
 }
 .profile-container .rentals {
   display: flex;
@@ -951,6 +983,11 @@ header .icons-container img:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.cars-container .car-card .delete-button-placement {
+  position: relative;
+  top: 50px;
+  left: 40%;
 }
 .cars-container .car-card .car-image {
   width: 100%;
@@ -1613,6 +1650,288 @@ header .icons-container img:hover {
 }
 .main-container .cart .cart-container .cart-elem ul form {
   margin-top: 10px;
+}
+
+.success-message {
+  margin-top: 100px;
+  color: green;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid green;
+  background-color: #eaffea;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 100px;
+  color: #e8ac3a;
+}
+
+.admin-container {
+  margin-top: 20px;
+  min-height: 90vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.admin-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.edit-car-container {
+  display: flex;
+  flex-direction: row;
+  justify-items: start;
+  align-items: center;
+  width: 95%;
+  gap: 2rem;
+}
+.edit-car-container .car-info-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+}
+.edit-car-container .car-info-container .car-info-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e8ac3a;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e8ac3a;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 5px;
+}
+.edit-car-container .car-image {
+  flex: 1;
+}
+.edit-car-container .car-image img {
+  width: 100%;
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+.edit-car-container .car-info {
+  width: 100%;
+  color: #fff;
+  position: relative;
+  bottom: 40px;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #2e2f2e;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.edit-car-container .car-info .car-specs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.edit-car-container .car-info .car-specs .car-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+.edit-car-container .car-info .car-specs .car-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  font-size: 1rem;
+  padding: 10px 0;
+  /* Add background color and padding for each section */
+}
+.edit-car-container .car-info .car-specs .car-details p {
+  margin: 0;
+}
+.edit-car-container .car-info .car-specs .car-details p strong {
+  color: #e8ac3a;
+}
+.edit-car-container .car-info .car-specs .car-details p {
+  background-color: #2e2f2e;
+  padding: 5px;
+  border-radius: 1rem;
+  color: #fff;
+}
+.edit-car-container .car-info .car-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  gap: 30px;
+}
+.edit-car-container .car-info .car-price .reserve-button {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+}
+.edit-car-container .car-info .car-price .reserve-button img {
+  width: 40px;
+  height: 40px;
+}
+.edit-car-container .car-info .car-price .price {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e8ac3a;
+}
+.edit-car-container .car-info .car-price .price small {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #fff;
+  text-align: right;
+}
+.edit-car-container .edit-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #2e2f2e;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  min-width: 250px;
+  height: 100%; /* Ensure the form container takes full height */
+  /* For smaller screens, stack the columns into one */
+}
+.edit-car-container .edit-form h1 {
+  margin-bottom: 1rem;
+  color: #e8ac3a;
+}
+.edit-car-container .edit-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 1.5rem;
+  width: 100%;
+  height: 100%; /* Ensure form takes full height */
+}
+.edit-car-container .edit-form .form-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure each column takes full height */
+}
+.edit-car-container .edit-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Allow form groups to expand to fill the available space */
+}
+.edit-car-container .edit-form .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+.edit-car-container .edit-form .form-group input,
+.edit-car-container .edit-form .form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  background: #333;
+  color: #fff;
+}
+.edit-car-container .edit-form .form-group input:focus,
+.edit-car-container .edit-form .form-group select:focus {
+  outline: none;
+  border: 2px solid #f2a900;
+}
+@media (max-width: 768px) {
+  .edit-car-container .edit-form form {
+    grid-template-columns: 1fr; /* Stack the columns into one */
+  }
+}
+
+.add-car-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+.add-car-container .add-form {
+  background: #2e2f2e;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+.add-car-container .add-form h1 {
+  font-size: 2rem;
+  color: #e8ac3a;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.add-car-container .add-form .error-message {
+  color: #ff0000;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.add-car-container .add-form .form-group {
+  margin-bottom: 1rem;
+}
+.add-car-container .add-form .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+}
+.add-car-container .add-form .form-group input,
+.add-car-container .add-form .form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid #2e2f2e;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  background: #333;
+  color: #fff;
+}
+.add-car-container .add-form .form-group input:focus,
+.add-car-container .add-form .form-group select:focus {
+  outline: none;
+  border: 2px solid #f2a900;
+}
+.add-car-container .add-form .form-group input[type=file] {
+  padding: 0.5rem;
+  border: none;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 @font-face {

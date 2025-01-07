@@ -18,6 +18,25 @@
     text-align: center;
   }
 
+  .admin-panel-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: $color-gold;
+    color: $color-white;
+    border-radius: $border-3xl;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color $transition-duration;
+
+    &:hover {
+      background-color: $color-transparent-dark;
+      box-shadow: $shadow-box-light;
+    }
+
+  }
+
   .rentals {
     display: flex;
     flex-direction: column;
@@ -55,18 +74,18 @@
 
         .rental-info {
           position: relative;
-            bottom: 70px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px; // Space between the columns
-            justify-content: center; // Center the columns horizontally
-            text-align: left; // Ensure all text aligns to the left
-            padding: 20px;
-            background-color: $color-medium-gray;
-            border-radius: $border-3xl;
-            box-shadow: $shadow-box;
-            width: 100%;
-            letter-spacing: 3px;
+          bottom: 70px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px; // Space between the columns
+          justify-content: center; // Center the columns horizontally
+          text-align: left; // Ensure all text aligns to the left
+          padding: 20px;
+          background-color: $color-medium-gray;
+          border-radius: $border-3xl;
+          box-shadow: $shadow-box;
+          width: 100%;
+          letter-spacing: 3px;
 
           span {
             font-weight: bold;
@@ -76,12 +95,12 @@
 
         }
 
-         img {
-            width: 100%;
-            aspect-ratio: 16 / 9; // Maintains a consistent aspect ratio
-            object-fit: cover; // Ensures the image fills the container proportionally
-            box-shadow: $shadow-box;
-            border-radius: $border-4xl;
+        img {
+          width: 100%;
+          aspect-ratio: 16 / 9; // Maintains a consistent aspect ratio
+          object-fit: cover; // Ensures the image fills the container proportionally
+          box-shadow: $shadow-box;
+          border-radius: $border-4xl;
         }
 
       }

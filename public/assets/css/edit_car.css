@@ -1,0 +1,233 @@
+.highlight {
+  color: #e8ac3a;
+}
+
+.underline-hover {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 5px;
+  text-decoration: none;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.underline-hover:hover {
+  transform: scale(1.15);
+  transition: 300ms;
+}
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e8ac3a;
+  transition: width 0.3s ease;
+}
+.underline-hover:hover::after {
+  width: 100%;
+}
+.underline-hover.active::after {
+  width: 100%;
+  transition: none;
+}
+
+.vertical-line-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  margin: 0 20px;
+}
+.vertical-line-container .vertical-line {
+  width: 2px;
+  height: 80px;
+  background-color: #f5a623;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.edit-car-container {
+  display: flex;
+  flex-direction: row;
+  justify-items: start;
+  align-items: center;
+  width: 95%;
+  gap: 2rem;
+}
+.edit-car-container .car-info-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+}
+.edit-car-container .car-info-container .car-info-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e8ac3a;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e8ac3a;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 5px;
+}
+.edit-car-container .car-image {
+  flex: 1;
+}
+.edit-car-container .car-image img {
+  width: 100%;
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+.edit-car-container .car-info {
+  width: 100%;
+  color: #fff;
+  position: relative;
+  bottom: 40px;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: #2e2f2e;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.edit-car-container .car-info .car-specs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.edit-car-container .car-info .car-specs .car-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+.edit-car-container .car-info .car-specs .car-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  font-size: 1rem;
+  padding: 10px 0;
+  /* Add background color and padding for each section */
+}
+.edit-car-container .car-info .car-specs .car-details p {
+  margin: 0;
+}
+.edit-car-container .car-info .car-specs .car-details p strong {
+  color: #e8ac3a;
+}
+.edit-car-container .car-info .car-specs .car-details p {
+  background-color: #2e2f2e;
+  padding: 5px;
+  border-radius: 1rem;
+  color: #fff;
+}
+.edit-car-container .car-info .car-price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  gap: 30px;
+}
+.edit-car-container .car-info .car-price .reserve-button {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+}
+.edit-car-container .car-info .car-price .reserve-button img {
+  width: 40px;
+  height: 40px;
+}
+.edit-car-container .car-info .car-price .price {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e8ac3a;
+}
+.edit-car-container .car-info .car-price .price small {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #fff;
+  text-align: right;
+}
+.edit-car-container .edit-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #2e2f2e;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  min-width: 250px;
+  height: 100%; /* Ensure the form container takes full height */
+  /* For smaller screens, stack the columns into one */
+}
+.edit-car-container .edit-form h1 {
+  margin-bottom: 1rem;
+  color: #e8ac3a;
+}
+.edit-car-container .edit-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 1.5rem;
+  width: 100%;
+  height: 100%; /* Ensure form takes full height */
+}
+.edit-car-container .edit-form .form-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure each column takes full height */
+}
+.edit-car-container .edit-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Allow form groups to expand to fill the available space */
+}
+.edit-car-container .edit-form .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+.edit-car-container .edit-form .form-group input,
+.edit-car-container .edit-form .form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  background: #333;
+  color: #fff;
+}
+.edit-car-container .edit-form .form-group input:focus,
+.edit-car-container .edit-form .form-group select:focus {
+  outline: none;
+  border: 2px solid #f2a900;
+}
+@media (max-width: 768px) {
+  .edit-car-container .edit-form form {
+    grid-template-columns: 1fr; /* Stack the columns into one */
+  }
+}
+
+/*# sourceMappingURL=edit_car.css.map */

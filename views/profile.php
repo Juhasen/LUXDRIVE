@@ -9,17 +9,17 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+
 $conn = connectToDatabase();
 
 $user_id = $_SESSION['user_id'];
 
 // Get user details
-$stmt = $conn->prepare("SELECT * FROM Users WHERE user_id = ?");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
+$result = get_user_details_by_id($user_id);
 $user = $result->fetch_assoc();
-$stmt->close();
+
+//if is Admin
+$isAdmin = $user['isAdmin'];
 
 // Get rentals with vehicle details
 $stmt = $conn->prepare("SELECT Rentals.*, Vehicles.make AS vehicle_name, Vehicles.model AS vehicle_model , Vehicles.image AS vehicle_photo 
@@ -35,6 +35,9 @@ closeConnection($conn);
 
 <div class="main-container">
     <div class="profile-container">
+        <?php if ($isAdmin == 'yes'): ?>
+            <a href="<?php echo BASE_REDIRECT_URL . 'admin'; ?>" class="admin-panel-link">Panel Administratora</a>
+        <?php endif; ?>
         <h1>Witaj, <span class="highlight"><?php echo htmlspecialchars($user['name']); ?></span>!</h1>
         <div class="user-data">
             <h3>TWOJE DANE</h3>
@@ -80,8 +83,8 @@ closeConnection($conn);
                             </p>
                             <p><span>Data rozpoczęcia:</span> <?php echo htmlspecialchars($rental['start_date']); ?></p>
                             <p><span>Data zakończenia:</span> <?php echo htmlspecialchars($rental['end_date']); ?></p>
-                            <p><span>Pick-up:</span> <?php echo htmlspecialchars($rental['pick_up_location']); ?></p>
-                            <p><span>Drop-off:</span> <?php echo htmlspecialchars($rental['drop_off_location']); ?></p>
+                            <p><span>Odbiór:</span> <?php echo htmlspecialchars($rental['pick_up_location']); ?></p>
+                            <p><span>Oddanie:</span> <?php echo htmlspecialchars($rental['drop_off_location']); ?></p>
                         </div>
 
                     </div>

@@ -34,3 +34,20 @@
     background-color: $color-dark-theme;
   }
 }
+
+.delete-button {
+    background-color: $color-red;
+    color: $color-white;
+    padding: 10px 20px;
+    border-radius: $border-full;
+    cursor: pointer;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: normal;
+    transition: background-color 0.3s ease;
+    border: 2px solid $color-black;
+
+    &:hover {
+        background-color: color.adjust($color-red, $lightness: -15%);
+    }
+}

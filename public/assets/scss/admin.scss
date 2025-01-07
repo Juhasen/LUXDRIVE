@@ -1,0 +1,38 @@
+﻿@use "utils" as *;
+
+.success-message {
+  margin-top: 100px;
+  color: $color-green;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid $color-green;
+  background-color: #eaffea;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 100px;
+  color: $color-gold;
+}
+
+.admin-container{
+  margin-top: 20px;
+  min-height: 90vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.admin-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}

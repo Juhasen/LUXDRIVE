@@ -2,7 +2,7 @@
 
 require_once 'database.php';
 
-function getFilteredCars($filters)
+function get_filtered_cars($filters)
 {
     $conn = connectToDatabase();
 

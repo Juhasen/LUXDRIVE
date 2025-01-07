@@ -5,6 +5,8 @@
   flex-direction: row;
   gap: 20px;
 
+
+
   .sidebar {
     flex-shrink: 0;
   }
@@ -121,7 +123,6 @@
   margin-right: 20px;
   width: 100% - $sidebar-width;
 
-
   .car-card {
     width: $card-width;
     max-width: 1200px;
@@ -132,6 +133,11 @@
     flex-direction: column;
     align-items: center;
 
+    .delete-button-placement {
+      position: relative;
+      top: 50px;
+      left: 40%;
+    }
 
     .car-image {
       width: 100%;

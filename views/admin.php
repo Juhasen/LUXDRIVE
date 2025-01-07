@@ -1,9 +1,38 @@
-<?php
+﻿<?php
+require '../controllers/functions.php';
+require_once '../controllers/constants.php';
+session_start();
+
+$is_logged_in = isset($_SESSION['user_id']);
+if (!$is_logged_in) {
+    header("Location: " . BASE_REDIRECT_URL . "home");
+    exit;
+}
+
+$isAdmin = check_if_user_is_admin($_SESSION['user_id']);
+if ($isAdmin != 'yes') {
+    header("Location: " . BASE_REDIRECT_URL . "home");
+    exit;
+}
+
 require '../controllers/filter_cars.php';
 
 $result = get_filtered_cars($_GET);
 
+
+if (isset($_GET['message']) && !empty($_GET['message'])) {
+    echo '<p class="success-message">' . htmlspecialchars($_GET['message']) . '</p>';
+}
+
+
 ?>
+
+<h1 class="admin-heading">Panel Administratora</h1>
+<div class="admin-buttons-container">
+    <button class="secondary-button" onclick="window.location.href='../public/index.php?page=add_car';">DODAJ NOWY SAMOCHÓD</button>
+    <button class="secondary-button" onclick="window.location.href='../public/index.php?page=users';">ZARZĄDZAJ UŻYTKOWNIKAMI</button>
+</div>
+
 
 <section class="main-container">
 
@@ -83,14 +112,18 @@ $result = get_filtered_cars($_GET);
             </div>
         </form>
     </div>
-
     <!-- CARS -->
     <div class="cars-container">
+
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 ?>
                 <div class="car-card">
+                    <button class="delete-button delete-button-placement"
+                            onclick="confirmDelete('<?php echo $row['id']; ?>', '<?php echo trim(htmlspecialchars($row['make'] . ' ' . $row['model'])); ?>')">
+                        x
+                    </button>
                     <img src="../public/assets/images/<?php echo htmlspecialchars($row['image']); ?>"
                          alt="<?php echo htmlspecialchars($row['make']); ?>" class="car-image"/>
                     <div class="car-info">
@@ -98,23 +131,27 @@ $result = get_filtered_cars($_GET);
                             <h2 class="car-name"><?php echo htmlspecialchars($row['make']) . ' ' . htmlspecialchars($row['model']); ?></h2>
                             <div class="car-details">
                         <span class="detail-icon">
-                            <img src="../public/assets/icons/car-seat.png" alt="Seats"> <?php echo htmlspecialchars($row['seats']); ?>
+                            <img src="../public/assets/icons/car-seat.png"
+                                 alt="Seats"> <?php echo htmlspecialchars($row['seats']); ?>
                         </span>
                                 <span class="detail-icon">
-                            <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> <?php echo htmlspecialchars($row['gearbox_type']); ?>
+                            <img src="../public/assets/icons/gearbox.png"
+                                 alt="Gearbox"> <?php echo htmlspecialchars($row['gearbox_type']); ?>
                         </span>
                                 <span class="detail-icon">
-                            <img src="../public/assets/icons/luggage.png" alt="Luggage"> <?php echo htmlspecialchars($row['luggage']); ?>
+                            <img src="../public/assets/icons/luggage.png"
+                                 alt="Luggage"> <?php echo htmlspecialchars($row['luggage']); ?>
                         </span>
                                 <span class="detail-icon">
-                            <img src="../public/assets/icons/calendar.png" alt="Year"> <?php echo htmlspecialchars($row['year']); ?>
+                            <img src="../public/assets/icons/calendar.png"
+                                 alt="Year"> <?php echo htmlspecialchars($row['year']); ?>
                         </span>
                             </div>
                         </div>
                         <div class="car-price">
-                            <button class="primary-button reserve-button"
-                                    onclick="window.location.href='../public/index.php?page=rent_car&car_id=<?php echo urlencode($row['id']); ?>';">
-                                Rezerwuj <img src="../public/assets/icons/car-key.png" alt="car key">
+                            <button class="primary-button reserve-button edit-button"
+                                    onclick="window.location.href='../public/index.php?page=edit_car&car_id=<?php echo urlencode($row['id']); ?>';">
+                                EDYTUJ <img src="../public/assets/icons/edit.png" alt="car key">
                             </button>
                             <span class="price"><?php echo number_format($row['price'], 0); ?>zł <small>/Doba</small></span>
                         </div>
@@ -128,3 +165,12 @@ $result = get_filtered_cars($_GET);
         ?>
     </div>
 </section>
+
+
+<script>
+    function confirmDelete(carId, carName) {
+        if (confirm(`Czy na pewno chcesz usunąć samochód: ${carName}?`)) {
+            window.location.href = `../controllers/delete_car.php?car_id=${carId}`;
+        }
+    }
+</script>

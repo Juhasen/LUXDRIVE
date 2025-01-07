@@ -155,6 +155,11 @@
   flex-direction: column;
   align-items: center;
 }
+.cars-container .car-card .delete-button-placement {
+  position: relative;
+  top: 50px;
+  left: 40%;
+}
 .cars-container .car-card .car-image {
   width: 100%;
   aspect-ratio: 16/9;
