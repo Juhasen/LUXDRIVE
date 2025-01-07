@@ -33,6 +33,10 @@ if (isset($_GET['message']) && !empty($_GET['message'])) {
     <button class="secondary-button" onclick="window.location.href='../public/index.php?page=users';">ZARZĄDZAJ UŻYTKOWNIKAMI</button>
 </div>
 
+<form action="../controllers/logout.php" method="POST">
+    <button type="submit" class="logout-button primary-button">Wyloguj</button>
+</form>
+
 
 <section class="main-container">
 

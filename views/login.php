@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+
+
 if (isset($_SESSION['user_id'])) {
     header("Location: https://luxdrive.pl/public/index.php?page=profile");
     exit;

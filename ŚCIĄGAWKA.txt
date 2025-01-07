@@ -1,1 +1,4 @@
 sass --watch  public/assets/sass:public/assets/css
+
+
+dodawanie do koszyka musi pamiętać co chciałem do niego dodać

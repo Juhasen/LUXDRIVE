@@ -35,9 +35,10 @@ closeConnection($conn);
 
 <div class="main-container">
     <div class="profile-container">
-        <?php if ($isAdmin == 'yes'): ?>
-            <a href="<?php echo BASE_REDIRECT_URL . 'admin'; ?>" class="admin-panel-link">Panel Administratora</a>
-        <?php endif; ?>
+        <?php if ($isAdmin == 'yes') {
+            header("Location: " . BASE_REDIRECT_URL . "admin");
+        }
+        ?>
         <h1>Witaj, <span class="highlight"><?php echo htmlspecialchars($user['name']); ?></span>!</h1>
         <div class="user-data">
             <h3>TWOJE DANE</h3>
