@@ -33,98 +33,94 @@ $services = get_additional_services();
 
 <div class="main-container">
     <div class="cart">
-        <?php
-        if (!$is_logged_in): ?>
-            <h1>Proszę się zalogować, aby zobaczyć koszyk</h1>
-        <?php else: ?>
-            <div class="cart-container">
-                <h1>Twój Koszyk</h1>
-                <?php if (empty($cart)): ?>
-                    <p>Twój koszyk jest pusty.</p>
-                <?php else: ?>
-                    <?php foreach ($cart as $index => $item): ?>
-                        <div class="cart-elem">
-                            <div class="cart-image-name-container">
-                                <strong>Samochód:</strong>
-                                <?php displayVehicleName($item['vehicleId']); ?>
-                                <?php displayCarImage($item['vehicleId']); ?>
-                            </div>
-                            <div class="cart-details-container">
-                                <ul>
-                                    <li>
-                                        <strong>Odbiór:</strong> <?php echo htmlspecialchars(trim($item['pickUpLocation'])); ?>
-                                    </li>
-                                    <li>
-                                        <strong>Zwrot:</strong> <?php echo htmlspecialchars(trim($item['dropOffLocation'])); ?>
-                                    </li>
-                                    <li>
-                                        <strong>Od:</strong> <?php echo htmlspecialchars(date('d-m-Y', strtotime(trim($item['rentalDateStart'])))); ?>
-                                    </li>
-                                    <li>
-                                        <strong>Do:</strong> <?php echo htmlspecialchars(date('d-m-Y', strtotime(trim($item['rentalDateEnd'])))); ?>
-                                    </li>
+        <div class="cart-container">
+            <h1>Twój Koszyk</h1>
+            <?php if (empty($cart)): ?>
+                <p>Twój koszyk jest pusty.</p>
+            <?php else: ?>
+                <?php foreach ($cart as $index => $item): ?>
+                    <div class="cart-elem">
+                        <div class="cart-image-name-container">
+                            <strong>Samochód:</strong>
+                            <?php displayVehicleName($item['vehicleId']); ?>
+                            <?php displayCarImage($item['vehicleId']); ?>
+                        </div>
+                        <div class="cart-details-container">
+                            <ul>
+                                <li>
+                                    <strong>Odbiór:</strong> <?php echo htmlspecialchars(trim($item['pickUpLocation'])); ?>
+                                </li>
+                                <li>
+                                    <strong>Zwrot:</strong> <?php echo htmlspecialchars(trim($item['dropOffLocation'])); ?>
+                                </li>
+                                <li>
+                                    <strong>Od:</strong> <?php echo htmlspecialchars(date('d-m-Y', strtotime(trim($item['rentalDateStart'])))); ?>
+                                </li>
+                                <li>
+                                    <strong>Do:</strong> <?php echo htmlspecialchars(date('d-m-Y', strtotime(trim($item['rentalDateEnd'])))); ?>
+                                </li>
 
-                                </ul>
-                            </div>
-                            <div class="cart-options">
-                                <strong>Dodatkowe opcje:</strong>
-                                <form method="POST" style="display: inline;">
-                                    <input type="hidden" name="action" value="update">
-                                    <input type="hidden" name="index" value="<?php echo $index; ?>">
+                            </ul>
+                        </div>
+                        <div class="cart-options">
+                            <strong>Dodatkowe opcje:</strong>
+                            <form method="POST" style="display: inline;">
+                                <input type="hidden" name="action" value="update">
+                                <input type="hidden" name="index" value="<?php echo $index; ?>">
 
-                                    <?php foreach ($services as $service): ?>
-                                        <label>
-                                            <input type="checkbox" name="options[<?php echo $index; ?>][]"
-                                                   value="<?php echo htmlspecialchars($service['id']); ?>"
-                                                <?php echo isset($item['options']) && in_array($service['id'], $item['options']) ? 'checked' : ''; ?>>
-                                            <?php echo htmlspecialchars(trim($service['name'])); ?>
-                                            - <?php echo number_format($service['price'], 0, '.', ''); ?> PLN
-                                        </label><br>
-                                    <?php endforeach; ?>
+                                <?php foreach ($services as $service): ?>
+                                    <label>
+                                        <input type="checkbox" name="options[<?php echo $index; ?>][]"
+                                               value="<?php echo htmlspecialchars($service['id']); ?>"
+                                            <?php echo isset($item['options']) && in_array($service['id'], $item['options']) ? 'checked' : ''; ?>>
+                                        <?php echo htmlspecialchars(trim($service['name'])); ?>
+                                        - <?php echo number_format($service['price'], 0, '.', ''); ?> PLN
+                                    </label><br>
+                                <?php endforeach; ?>
 
-                                    <button type="submit" class="secondary-button">Zaktualizuj opcje</button>
-                                </form>
-                            </div>
-                            <?php
-                            $item['price'] = get_cars_price($item['vehicleId']);
-                            // Obliczanie liczby dni wynajmu
-                            $rentDays = (strtotime($item['rentalDateEnd']) - strtotime($item['rentalDateStart'])) / (60 * 60 * 24);
+                                <button type="submit" class="secondary-button">Zaktualizuj opcje</button>
+                            </form>
+                        </div>
+                        <?php
+                        $item['price'] = get_cars_price($item['vehicleId']);
+                        // Obliczanie liczby dni wynajmu
+                        $rentDays = (strtotime($item['rentalDateEnd']) - strtotime($item['rentalDateStart'])) / (60 * 60 * 24);
 
-                            // Cena wynajmu samochodu
-                            $carRentalPrice = $item['price'] * $rentDays;
+                        // Cena wynajmu samochodu
+                        $carRentalPrice = $item['price'] * $rentDays;
 
-                            // Cena za dodatkowe usługi
-                            $additionalPrice = 0;
-                            if (isset($item['options'])) {
-                                foreach ($item['options'] as $selectedOption) {
-                                    foreach ($services as $service) {
-                                        if ($service['id'] == $selectedOption) {
-                                            $additionalPrice += $service['price'];
-                                            break;
-                                        }
+                        // Cena za dodatkowe usługi
+                        $additionalPrice = 0;
+                        if (isset($item['options'])) {
+                            foreach ($item['options'] as $selectedOption) {
+                                foreach ($services as $service) {
+                                    if ($service['id'] == $selectedOption) {
+                                        $additionalPrice += $service['price'];
+                                        break;
                                     }
                                 }
                             }
-                            // Całkowita cena
-                            $totalPrice = $carRentalPrice + $additionalPrice;
-                            ?>
+                        }
+                        // Całkowita cena
+                        $totalPrice = $carRentalPrice + $additionalPrice;
+                        ?>
 
-                            <div class="cart-price">
-                                <strong>Cena:</strong>
-                                <div class="price">
-                                    <?php echo number_format($totalPrice, 2, '.', ''); ?> PLN
-                                </div>
+                        <div class="cart-price">
+                            <strong>Cena:</strong>
+                            <div class="price">
+                                <?php echo number_format($totalPrice, 2, '.', ''); ?> PLN
                             </div>
-                            <form method="POST" onsubmit="return confirmDelete()">
-                                <input type="hidden" name="action" value="remove">
-                                <input type="hidden" name="index" value="<?php echo $index; ?>">
-                                <button type="submit" class="delete-button delete-item-button">Usuń</button>
-                            </form>
                         </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
+                        <form method="POST" onsubmit="return confirmDelete()">
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="index" value="<?php echo $index; ?>">
+                            <button type="submit" class="delete-button delete-item-button">Usuń</button>
+                        </form>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+
     </div>
 
 </div>
@@ -152,37 +148,48 @@ foreach ($cart as $index => $item) {
 $_SESSION['totalCost'] = $totalPrice;
 ?>
 
+
 <div class="sticky-footer">
     <div class="footer-content">
         <strong>Całkowita cena: </strong>
         <div class="total-price">
             <?php echo number_format($totalPrice, 2, '.', ''); ?> PLN
         </div>
-        <button class="primary-button">Przejdź do płatności</button>
+        <button class="primary-button payment-init">Przejdź do płatności</button>
     </div>
 </div>
 
+
 <div id="payment-popup" class="payment-popup hide">
-    <div class="payment-popup-content">
-        <h2>Wybierz metodę płatności</h2>
-        <button class="payment-button" onclick="selectPaymentMethod('Karta płatnicza')">
-            <img src="../public/assets/icons/visa.svg" alt="karta płatnicza">
-            Karta płatnicza
+    <?php
+    if (!$is_logged_in): ?>
+        <img class="no-login-image" src="../public/assets/icons/car-white.svg" alt="white car"/>
+        <h1>Proszę się zalogować, aby zobaczyć dokończyć rezerwację</h1>
+        <button class="primary-button go-to-login-page"
+                onclick="window.location.href='https://luxdrive.pl/public/index.php?page=login'">Przejdź do logowania
         </button>
-        <button class="payment-button" onclick="selectPaymentMethod('Google Pay')">
-            <img src="../public/assets/icons/googlepay.svg" alt="google pay">Google Pay
-        </button>
-        <button class="payment-button" onclick="selectPaymentMethod('BLIK')">
-            <img src="../public/assets/icons/BLIK.webp" alt="BLIK">
-            BLIK
-        </button>
-        <button class="payment-button" onclick="selectPaymentMethod('Przelew')">
-            <img src="../public/assets/icons/przelew.svg" alt="przelew">
-            Przelew
-        </button>
-        <br><br>
-        <button type="button" class="delete-button" onclick="closePaymentPopup()">Anuluj</button>
-    </div>
+    <?php else: ?>
+        <div class="payment-popup-content">
+            <h2>Wybierz metodę płatności</h2>
+            <button class="payment-button" onclick="selectPaymentMethod('Karta płatnicza')">
+                <img src="../public/assets/icons/visa.svg" alt="karta płatnicza">
+                Karta płatnicza
+            </button>
+            <button class="payment-button" onclick="selectPaymentMethod('Google Pay')">
+                <img src="../public/assets/icons/googlepay.svg" alt="google pay">Google Pay
+            </button>
+            <button class="payment-button" onclick="selectPaymentMethod('BLIK')">
+                <img src="../public/assets/icons/BLIK.webp" alt="BLIK">
+                BLIK
+            </button>
+            <button class="payment-button" onclick="selectPaymentMethod('Przelew')">
+                <img src="../public/assets/icons/przelew.svg" alt="przelew">
+                Przelew
+            </button>
+            <br><br>
+            <button type="button" class="delete-button" onclick="closePaymentPopup()">Anuluj</button>
+        </div>
+    <?php endif; ?>
 </div>
 
 <!-- BLIK Transaction Popup -->
@@ -252,7 +259,7 @@ $_SESSION['totalCost'] = $totalPrice;
         document.getElementById('blik-form').submit();
     });
 
-    document.querySelector('.primary-button').addEventListener('click', function (event) {
+    document.querySelector('.payment-init').addEventListener('click', function (event) {
         event.preventDefault();
         showPaymentPopup();
     });

@@ -220,6 +220,21 @@
   align-items: center;
   z-index: 9999;
   transition: opacity 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  .no-login-image {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .go-to-login-page {
+    margin-top: 20px;
+  }
+
+  h1 {
+    color: $color-white;
+  }
 }
 
 /* Hidden state */
