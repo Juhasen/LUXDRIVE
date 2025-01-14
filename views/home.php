@@ -1,7 +1,6 @@
 <?php
 require('../controllers/functions.php');
 
-
 $conn = connectToDatabase();
 
 $sql = "SELECT * FROM Vehicles WHERE id IN (17, 18, 19)";

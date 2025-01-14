@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require '../controllers/functions.php';
 require_once '../controllers/constants.php';
 session_start();

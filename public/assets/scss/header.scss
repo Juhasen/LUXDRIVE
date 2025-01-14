@@ -50,12 +50,20 @@ header {
       height: 30px;
       width: auto;
       cursor: pointer;
-      transition: color 0.3s ease, transform 0.3s ease;
+      transition: color $transition-duration ease, transform $transition-duration ease;
 
       &:hover {
         color: $color-white;
         transform: scale(1.25);
       }
     }
+  }
+}
+
+@media (max-width: 468px) {
+  header {
+    flex-direction: column;
+    gap: 20px;
+    height: 12rem;
   }
 }

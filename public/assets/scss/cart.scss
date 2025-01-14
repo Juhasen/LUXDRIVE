@@ -1,4 +1,4 @@
-﻿@use "utils" as *;
+@use "utils" as *;
 
 .main-container {
   display: flex;
@@ -7,11 +7,10 @@
 
   .cart {
     display: flex;
-    width: 100vw;
+    width: 90vw;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    justify-items: start;
     color: $color-white;
 
 
@@ -24,7 +23,7 @@
     .cart-container {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 40px;
       width: 100%;
       padding: 0 20px;
 
@@ -37,29 +36,298 @@
       .cart-elem {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        gap: 20px;
+        justify-content: space-around;
         padding: 20px;
+        gap: 20px;
+        flex-wrap: wrap;
         background-color: $color-medium-gray;
         border-radius: $border-3xl;
         box-shadow: $shadow-box;
 
-        ul {
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .cart-image-name-container {
+
+
+          .car_name {
+            color: $color-gold;
+            letter-spacing: 2px;
+            font-size: x-large;
+          }
+
+          .car_image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: $border-2xl;
+            padding-top: 10px;
+          }
+        }
+
+        .cart-details-container {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          justify-content: center;
+
+
+          ul {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 20px;
+            list-style: none;
+
+            strong {
+              font-size: 1rem;
+              color: $color-gold;
+              letter-spacing: 2px;
+            }
+
+            form {
+              margin-top: 10px;
+
+              button {
+                background-color: $color-red;
+                border: none;
+                padding: 10px 15px;
+                border-radius: $border-2xl;
+                color: $color-white;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                  background-color: darken($color-red, 10%);
+                }
+              }
+            }
+          }
+        }
+
+        .cart-options {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding: 15px 0;
+
+          label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            color: $color-gold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: lighten($color-gold, 10%);
+            }
+
+            input[type="checkbox"] {
+              appearance: none; // Ukrywa domyślny styl checkboxa
+              width: 18px;
+              height: 18px;
+              border: 2px solid $color-gold;
+              border-radius: 5px;
+              cursor: pointer;
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              transition: background-color 0.3s ease, border-color 0.3s ease;
+
+              &:checked {
+                background-color: $color-gold;
+                border-color: $color-gold;
+
+                &::after {
+                  content: "✓";
+                  font-size: 1rem;
+                  color: $color-medium-gray;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+        }
+
+        .cart-price {
           display: flex;
           flex-direction: column;
           gap: 10px;
-          padding: 20px;
+          min-width: 300px;
+          font-size: 1.2rem;
 
-          strong {
-            font-size: 1rem;
+          .price {
+            font-size: 1.5rem;
             color: $color-gold;
+            padding-left: 40px;
+            letter-spacing: 1px;
           }
 
-          form {
-            margin-top: 10px;
+          .primary-button {
+            font-size: large;
+            font-weight: bold;
           }
         }
       }
     }
   }
+}
+
+.sticky-footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background-color: $color-transparent-dark;
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow-box;
+  border-radius: $border-3xl;
+  border-top: $color-gold 2px solid;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.total-price {
+  font-size: 1.5rem;
+  color: $color-gold; /* Gold color for total price */
+}
+
+/* The background overlay */
+.payment-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $color-transparent-dark;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Hidden state */
+.payment-popup.hide {
+  opacity: 0;
+  display: none;
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Visible state */
+.payment-popup.show {
+  opacity: 1;
+  display: flex;
+  pointer-events: auto; /* Allow interaction when visible */
+}
+
+/* The popup container */
+.payment-popup-content {
+  background: $color-medium-gray;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  box-shadow: $shadow-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Popup title */
+.payment-popup-content h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: $color-gold;
+}
+
+/* Button styles */
+.payment-button {
+  background-color: $color-dark-theme;
+  color: $color-white;
+  padding: 12px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  max-width: 200px;
+  transition: background-color 0.3s ease;
+
+  display: flex;
+  align-items: center;
+
+
+  img {
+    margin-right: 10px;
+    max-width: 41px;
+    max-height: 28px;
+  }
+}
+
+.payment-button:hover {
+  background-color: $color-gold;
+  color: $color-black;
+  border: 2px solid $color-black;
+}
+
+
+// BLIK Popup Styles
+#blik-popup .payment-popup-content {
+  padding: 30px;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#blik-form {
+  label {
+    color: $color-white;
+  }
+}
+
+// BLIK Input Field
+#blik-popup input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: 2px solid $color-white;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+
+  &:focus {
+    border-color: $color-gold;
+    outline: none;
+  }
+}
+
+// Buttons for BLIK form
+#blik-popup button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px 0;
 }

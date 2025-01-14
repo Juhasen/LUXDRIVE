@@ -47,7 +47,7 @@ if ($stmt->num_rows > 0) {
 }
 $stmt->close();
 
-// Hash the password
+// Hash the password  BCRYPT
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Insert the new user into the database

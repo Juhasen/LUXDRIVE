@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Get the form and the submit button
     const form = document.getElementById('rental-form');
     const submitButton = document.getElementById('submit-button');

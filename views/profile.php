@@ -25,7 +25,9 @@ $isAdmin = $user['isAdmin'];
 $stmt = $conn->prepare("SELECT Rentals.*, Vehicles.make AS vehicle_name, Vehicles.model AS vehicle_model , Vehicles.image AS vehicle_photo 
                         FROM Rentals 
                         JOIN Vehicles ON Rentals.vehicle_id = Vehicles.id 
-                        WHERE Rentals.user_id = ?");
+                        WHERE Rentals.user_id = ?
+                        ORDER BY Rentals.id DESC");
+
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $rental_result = $stmt->get_result();
@@ -56,38 +58,49 @@ closeConnection($conn);
                     <p>Numer licencji:</p>
                 </div>
                 <div class="values">
-                    <p><span><?php echo htmlspecialchars($user['name']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['surname']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['email']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['phone_number']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['country']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['city']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['street']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['apartment']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['postal_code']); ?></span></p>
-                    <p><span><?php echo htmlspecialchars($user['license_number']); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['name'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['surname'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['email'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['phone_number'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['country'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['city'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['street'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['apartment'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['postal_code'])); ?></span></p>
+                    <p><span><?php echo htmlspecialchars(trim($user['license_number'])); ?></span></p>
+
                 </div>
             </div>
         </div>
         <h3>Twoje Rezerwacje</h3>
         <div class="rentals">
             <div class="rentals-container">
-                <?php while ($rental = $rental_result->fetch_assoc()): ?>
-                    <div class="rental">
-                        <img src="<?php echo '../public/assets/images/' . htmlspecialchars($rental['vehicle_photo']); ?>"
+                <?php while ($rental = $rental_result->fetch_assoc()):
+                    $isExpired = strtotime($rental['end_date']) < time(); // Sprawdzenie, czy rezerwacja wygasła
+                    ?>
+                    <div class="rental <?php echo $isExpired ? 'expired' : ''; ?>">
+                        <img src="<?php echo '../public/assets/images/' . htmlspecialchars(trim($rental['vehicle_photo'])); ?>"
                              alt="Car Image"
                              class="vehicle-photo" width="600" height="400">
                         <div class="rental-info">
-                            <p><span>ID rezerwacji:</span> <?php echo htmlspecialchars($rental['id']); ?></p>
+                            <p><span>ID rezerwacji:</span> <?php echo htmlspecialchars(trim($rental['id'])); ?></p>
                             <p>
-                                <span>Samochód:</span> <?php echo htmlspecialchars($rental['vehicle_name'] . ' ' . $rental['vehicle_model']); ?>
+                                <span>Samochód:</span> <?php echo htmlspecialchars(trim($rental['vehicle_name'] . ' ' . $rental['vehicle_model'])); ?>
                             </p>
-                            <p><span>Data rozpoczęcia:</span> <?php echo htmlspecialchars($rental['start_date']); ?></p>
-                            <p><span>Data zakończenia:</span> <?php echo htmlspecialchars($rental['end_date']); ?></p>
-                            <p><span>Odbiór:</span> <?php echo htmlspecialchars($rental['pick_up_location']); ?></p>
-                            <p><span>Oddanie:</span> <?php echo htmlspecialchars($rental['drop_off_location']); ?></p>
-                        </div>
+                            <p>
+                                <span>Data rozpoczęcia:</span> <?php echo htmlspecialchars(trim($rental['start_date'])); ?>
+                            </p>
+                            <p><span>Data zakończenia:</span> <?php echo htmlspecialchars(trim($rental['end_date'])); ?>
+                            </p>
+                            <p><span>Odbiór:</span> <?php echo htmlspecialchars(trim($rental['pick_up_location'])); ?>
+                            </p>
+                            <p><span>Zwrot:</span> <?php echo htmlspecialchars(trim($rental['drop_off_location'])); ?>
+                            </p>
 
+                            <?php if ($isExpired): ?>
+                                <p class="expired-text">Rezerwacja wygasła</p>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 <?php endwhile; ?>
             </div>

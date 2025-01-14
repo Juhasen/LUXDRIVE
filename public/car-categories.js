@@ -1,4 +1,4 @@
-﻿document.getElementById('navigateButtonLuxury').addEventListener('click', function () {
+document.getElementById('navigateButtonLuxury').addEventListener('click', function () {
     window.location.href = 'https://luxdrive.pl/public/index.php?page=cars&gearbox=&car_type=Luxury&seats=&price=';
 });
 

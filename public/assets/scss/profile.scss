@@ -41,10 +41,8 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-
     align-items: center;
     justify-content: center;
-    height: auto;
     width: 100%;
 
     h3 {
@@ -56,7 +54,7 @@
 
     .rentals-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 40px; // Space between the columns
       justify-content: center; // Center the columns horizontally
       text-align: left; // Ensure all text aligns to the left
@@ -90,14 +88,40 @@
           span {
             font-weight: bold;
             color: $color-gold;
+            letter-spacing: 0;
           }
 
+          .expired {
+            position: relative;
+            opacity: 0.6;
+            filter: grayscale(100%);
+            border: 2px solid $color-red;
+            overflow: hidden;
+          }
+
+          .expired-text {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 2rem;
+            font-weight: bold;
+            color: $color-red;
+            text-align: center;
+            text-transform: uppercase;
+            background: $color-transparent-darkest;
+            padding: 10px 20px;
+            border-radius: 10px;
+            z-index: 10;
+            box-shadow: $shadow-box;
+          }
 
         }
 
         img {
           width: 100%;
           aspect-ratio: 16 / 9; // Maintains a consistent aspect ratio
+          height: fit-content;
           object-fit: cover; // Ensures the image fills the container proportionally
           box-shadow: $shadow-box;
           border-radius: $border-4xl;

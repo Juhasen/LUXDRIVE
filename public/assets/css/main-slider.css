@@ -58,19 +58,19 @@
   width: 100%;
   height: 100vh;
   opacity: 1;
-  transform: translateX(-100%); /* Start off-screen to the left */
-  transition: transform 1.5s ease; /* Smooth movement and fade */
+  transform: translateX(-100%);
+  transition: transform 1.5s ease;
   background-size: cover;
   background-position: center;
   z-index: 0;
 }
 .main-slider .background.active {
-  transform: translateX(0); /* Slide into view from left to right */
+  transform: translateX(0);
   z-index: 1;
 }
 .main-slider .background.previous {
-  transform: translateX(100%); /* Move the previous slide off-screen to the right */
-  z-index: 0; /* Behind active slide */
+  transform: translateX(100%);
+  z-index: 0;
 }
 .main-slider .background.background:before {
   content: "";
@@ -79,7 +79,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+  background-color: rgba(0, 0, 0, 0.4);
 }
 .main-slider .container {
   position: absolute;

@@ -1,23 +1,10 @@
-﻿<?php
+<?php
 require_once '../controllers/functions.php';
 session_start();
 require '../config/database.php';
 
 
 $conn = connectToDatabase();
-
-// Check if the user is logged in
-$isLoggedIn = isset($_SESSION['user_id']);
-
-if ($isLoggedIn) {
-    $user_id = $_SESSION['user_id'];
-    $stmt = $conn->prepare("SELECT * FROM Users WHERE user_id = ?");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-    $stmt->close();
-}
 
 
 // Fetch car details using car_id
@@ -69,49 +56,12 @@ closeConnection($conn);
                 </div>
             </div>
         </div>
-        <?php if (!$isLoggedIn): ?>
-            <!-- Show login prompt -->
-            <div class="login-prompt">
-                <p>Musisz się zalogować, aby wypożyczyć samochód.</p>
-                <button onclick="window.location.href='../public/index.php?page=login'" class="primary-button">Przejdź
-                    do logowania
-                </button>
-            </div>
-        <?php else: ?>
 
+        <div>
+            Uzupełnij niezbędne informacje
+        </div>
 
-            <div class="user-data">
-                <h3>TWOJE DANE</h3>
-                <div class="data-container">
-                    <div class="labels">
-                        <p>Imię:</p>
-                        <p>Nazwisko:</p>
-                        <p>Email:</p>
-                        <p>Telefon:</p>
-                        <p>Kraj:</p>
-                        <p>Miasto:</p>
-                        <p>Ulica:</p>
-                        <p>Numer mieszkania:</p>
-                        <p>Kod pocztowy:</p>
-                        <p>Numer licencji:</p>
-                    </div>
-                    <div class="values">
-                        <p><span><?php echo htmlspecialchars($user['name']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['surname']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['email']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['phone_number']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['country']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['city']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['street']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['apartment']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['postal_code']); ?></span></p>
-                        <p><span><?php echo htmlspecialchars($user['license_number']); ?></span></p>
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
     </div>
-    <?php if ($isLoggedIn): ?>
         <section class="section-rent-now">
             <h2 class="h-rent-now">WYPOŻYCZ TERAZ</h2>
             <h1 class="h-book-now">Zarezerwuj Swój Samochód</h1>
@@ -177,46 +127,7 @@ closeConnection($conn);
             <button class="primary-button submit-button" type="submit" id="submit-button">DODAJ DO KOSZYKA</button>
         </div>
 
-    <?php endif; ?>
-
 </div>
-
-<script>
-    // Assign the car price to a JavaScript variable
-    const carPrice = <?php echo json_encode($car['price']); ?>;
-    document.getElementById('total-price').textContent = carPrice + ' zł';
-
-    // Function to calculate the rental price based on dates
-    function calculateTotalPrice() {
-        const startDate = document.getElementById('rental-date-start').value;
-        const endDate = document.getElementById('rental-date-end').value;
-
-
-        if (startDate && endDate) {
-            const start = new Date(startDate);
-            const end = new Date(endDate);
-
-
-            const timeDiff = end - start;
-            let days = timeDiff / (1000 * 3600 * 24); // Convert milliseconds to days
-
-
-            if (days < 1) {
-                days = 1;
-            }
-
-            const totalPrice = carPrice * days;
-            console.log(totalPrice);
-
-            // Update the displayed total price
-            document.getElementById('total-price').textContent = totalPrice.toFixed(0) + ' zł';
-        }
-    }
-
-    // Attach event listeners to the date input fields
-    document.getElementById('rental-date-start').addEventListener('change', calculateTotalPrice);
-    document.getElementById('rental-date-end').addEventListener('change', calculateTotalPrice);
-</script>
 
 <script src="../public/rent-now.js" defer></script>
 <script src="../public/rent-now-validate.js" defer></script>

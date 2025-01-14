@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Pobranie danych z formularza
     $name = htmlspecialchars(trim($_POST['name']));

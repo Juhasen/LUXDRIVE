@@ -84,7 +84,6 @@
   gap: 20px;
   align-items: center;
   justify-content: center;
-  height: auto;
   width: 100%;
 }
 .profile-container .rentals h3 {
@@ -95,7 +94,7 @@
 }
 .profile-container .rentals .rentals-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 40px;
   justify-content: center;
   text-align: left;
@@ -128,10 +127,35 @@
 .profile-container .rentals .rentals-container .rental .rental-info span {
   font-weight: bold;
   color: #e8ac3a;
+  letter-spacing: 0;
+}
+.profile-container .rentals .rentals-container .rental .rental-info .expired {
+  position: relative;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  border: 2px solid #ff0000;
+  overflow: hidden;
+}
+.profile-container .rentals .rentals-container .rental .rental-info .expired-text {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff0000;
+  text-align: center;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 10;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 .profile-container .rentals .rentals-container .rental img {
   width: 100%;
   aspect-ratio: 16/9;
+  height: fit-content;
   object-fit: cover;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 2rem;
