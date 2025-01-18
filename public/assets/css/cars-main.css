@@ -149,7 +149,6 @@
   display: flex;
   gap: 15px;
   font-size: 1.2rem;
-  padding-right: 30px;
 }
 .section-cars .slider-container .car-card .car-info .car-specs .car-details .detail-icon {
   display: flex;
@@ -179,6 +178,52 @@
   font-weight: normal;
   color: #fff;
   text-align: right;
+}
+
+@media (max-width: 768px) {
+  .section-cars {
+    padding: 0 10px;
+    gap: 0;
+  }
+  .section-cars .section-header {
+    margin-bottom: 10px;
+  }
+  .section-cars .section-header .section-description {
+    text-align: center;
+  }
+  .section-cars .section-header .section-title {
+    text-align: center;
+  }
+  .section-cars .slider-container {
+    gap: 20px;
+  }
+  .section-cars .slider-container .car-card {
+    margin: 0;
+  }
+  .section-cars .slider-container .car-card .car-info {
+    justify-content: center;
+    bottom: -10px;
+  }
+  .section-cars .slider-container .car-card .car-info .car-specs .car-name {
+    text-align: center;
+  }
+  .section-cars .slider-container .car-card .car-info .car-specs .car-details {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .section-cars .slider-container .car-card .car-info .car-specs .car-details .detail-icon {
+    font-size: medium;
+  }
+  .section-cars .slider-container .car-card .car-info .car-specs .car-details .detail-icon img {
+    width: 30px;
+    height: 30px;
+  }
+  .section-cars .slider-container .car-card .car-info .car-price .price {
+    font-size: 1.5rem;
+  }
+  .section-cars .slider-container .car-card .car-info .car-price .price small {
+    font-size: 0.8rem;
+  }
 }
 
 /*# sourceMappingURL=cars-main.css.map */

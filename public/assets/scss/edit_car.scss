@@ -208,12 +208,28 @@
         border: 2px solid $label-active-color;
       }
     }
+  }
+}
 
-    /* For smaller screens, stack the columns into one */
-    @media (max-width: 768px) {
-      form {
-        grid-template-columns: 1fr; /* Stack the columns into one */
+/* For smaller screens, stack the columns into one */
+@media (max-width: 768px) {
+
+  .edit-car-container {
+    flex-direction: column-reverse;
+
+    .car-info {
+      .car-specs {
+        .car-details {
+          grid-template-columns: 1fr;
+        }
       }
     }
   }
+  #edit-car-form {
+    grid-template-columns: 1fr; /* Stack the columns into one */
+  }
+
+
 }
+
+

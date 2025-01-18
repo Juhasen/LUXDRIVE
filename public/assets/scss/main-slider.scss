@@ -45,7 +45,7 @@
     position: absolute; // Use absolute positioning
     color: $color-white; // Use map.get to get the color
     top: 25%;
-    right: 10%;
+    right: 5%;
     display: flex; // Use flexbox for layout
     flex-direction: column;
     align-items: start;
@@ -61,6 +61,7 @@
     .car-name {
       font-size: 24px; // Adjust the size as needed
       font-weight: 500;
+      text-align: center;
     }
 
     .price {
@@ -81,7 +82,8 @@
     }
 
     h1 {
-      font-size: 86px;
+      font-size: xxx-large;
+      text-align: center;
     }
 
     p {
@@ -131,6 +133,61 @@
           transform: scale(1.1);
         }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main-slider {
+    .container {
+      top: 30%;
+      right: 5%;
+      width: 90%;
+
+      .premium {
+        font-size: 18px; // Adjust the size as needed
+      }
+
+      .car-name {
+        font-size: 18px; // Adjust the size as needed
+        font-weight: 500;
+      }
+
+      .price {
+        display: inline; // Ensures elements are inline
+        margin-left: 20px;
+        font-size: 24px; // Same size for price
+
+        .price-amount {
+          color: $color-gold; // Yellow color for 3000zł
+          font-size: 32px; // Increase size for 3000zł
+          font-weight: bold;
+        }
+
+        .price-unit {
+          color: $color-white; // White color for /Doba
+          font-size: 24px; // Increase size for /Doba
+        }
+      }
+
+      h1 {
+        font-size: 55px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+
+      .main-button-container {
+
+
+        .view-detail-button,
+        .rent-now-button {
+          font-size: 15px;
+          padding: 10px 15px;
+        }
+      }
+
     }
   }
 }

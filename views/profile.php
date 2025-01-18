@@ -90,11 +90,35 @@ closeConnection($conn);
                             <p>
                                 <span>Data rozpoczęcia:</span> <?php echo htmlspecialchars(trim($rental['start_date'])); ?>
                             </p>
-                            <p><span>Data zakończenia:</span> <?php echo htmlspecialchars(trim($rental['end_date'])); ?>
+                            <p>
+                                <span>Data zakończenia:</span> <?php echo htmlspecialchars(trim($rental['end_date'])); ?>
                             </p>
-                            <p><span>Odbiór:</span> <?php echo htmlspecialchars(trim($rental['pick_up_location'])); ?>
+                            <p>
+                                <span>Odbiór:</span> <?php echo htmlspecialchars(trim($rental['pick_up_location'])); ?>
                             </p>
-                            <p><span>Zwrot:</span> <?php echo htmlspecialchars(trim($rental['drop_off_location'])); ?>
+                            <p>
+                                <span>Zwrot:</span> <?php echo htmlspecialchars(trim($rental['drop_off_location'])); ?>
+                            </p>
+                            <p>
+                                <?php
+                                $status = trim($rental['isAccepted']);
+                                ?>
+                                <span>Stan rezerwacji:</span>
+                                <span class="
+                                <?php
+                                if ($status === 'Oczekuje na potwierdzenie') {
+                                    echo 'pending-status';
+                                } elseif ($status === 'Potwierdzona') {
+                                    echo 'accepted-status';
+                                } elseif ($status === 'Nie potwierdzona') {
+                                    echo 'rejected-status';
+                                } else {
+                                    echo 'default';
+                                }
+                                ?>
+                                     ">
+                                    <?php echo htmlspecialchars($status); ?>
+                                </span>
                             </p>
 
                             <?php if ($isExpired): ?>
@@ -111,3 +135,4 @@ closeConnection($conn);
         </form>
     </div>
 </div>
+`

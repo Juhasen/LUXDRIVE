@@ -74,8 +74,7 @@ closeConnection($conn);
             <?php
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $gearbox_types = [1 => 'Manualna', 2 => 'Automatyczna'];
-                    $gearbox = $gearbox_types[$row['gearbox_type']] ?? 'Nieznany';
+                    $gearbox = $row['gearbox_type'] ?? 'Nieznany';
                     echo '
                 <div class="car-card">
                     <img src="../public/assets/images/' . htmlspecialchars($row['image']) . '"

@@ -3,16 +3,19 @@
 .add-car-container {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
   gap: 2rem;
   max-width: 1200px;
-  width: 100%;
+  width: 90%;
 
   .add-form {
     background: $color-medium-gray;
-    padding: 2rem;
+    padding: 20px;
     border-radius: $border-3xl;
     box-shadow: $shadow-box;
+    align-items: center;
+    justify-content: center;
     color: $color-white;
     width: 100%;
     max-width: 600px;

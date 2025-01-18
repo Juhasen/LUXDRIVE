@@ -17,6 +17,7 @@
 @use "admin";
 @use "edit_car";
 @use "add_car";
+@use "rentals";
 
 @font-face {
   font-family: 'Montserrat';
@@ -44,4 +45,9 @@ body {
   overflow: hidden;
 }
 
+@media screen and (max-width: 768px) {
+  .main-container {
+    margin-top: 210px;
+  }
+}
 

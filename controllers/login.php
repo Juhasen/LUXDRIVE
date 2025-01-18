@@ -5,6 +5,13 @@ require_once '../controllers/database.php';
 session_start();
 $_SESSION['valid']= true;
 
+if(isset($_SESSION['user_id'])){
+    header("Location: " . BASE_REDIRECT_URL . 'profile');
+    exit;
+}
+
+$redirect_to_cart = $_SESSION['redirect'] ?? null;
+
 $conn = connectToDatabase();
 
 $email = $_POST['email'];
@@ -27,7 +34,12 @@ if ($stmt->num_rows > 0) {
         $_SESSION['user_name'] = $name;
         $_SESSION['user_email'] = $email;
 
-        header("Location: " . BASE_REDIRECT_URL . 'profile');
+        if ($redirect_to_cart) {
+            header("Location: " . $_SESSION['redirect']);
+        }
+        else{
+            header("Location: " . BASE_REDIRECT_URL . 'profile');
+        }
         exit;
     } else {
         echo "<h1>Invalid username or password!</h1>";

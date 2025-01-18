@@ -5,7 +5,7 @@ include_once '../includes/header.php';
 
 $page = $_GET['page'] ?? 'home';
 $page = isset($_GET['page']) ? explode('?', $_GET['page'])[0] : 'home';
-$allowed_pages = ['home', 'cars', 'contact', 'login', 'register', 'profile', 'rent_car', 'cart', 'admin', 'edit_car', 'add_car'];
+$allowed_pages = ['home', 'cars', 'contact', 'login', 'register', 'profile', 'rent_car', 'cart', 'admin', 'edit_car', 'add_car', 'rentals'];
 
 if (in_array($page, $allowed_pages)) {
     include("../views/{$page}.php");

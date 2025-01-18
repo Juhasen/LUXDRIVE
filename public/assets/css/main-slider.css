@@ -85,7 +85,7 @@
   position: absolute;
   color: #fff;
   top: 25%;
-  right: 10%;
+  right: 5%;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -100,6 +100,7 @@
 .main-slider .container .car-name {
   font-size: 24px;
   font-weight: 500;
+  text-align: center;
 }
 .main-slider .container .price {
   display: inline;
@@ -116,7 +117,8 @@
   font-size: 24px;
 }
 .main-slider .container h1 {
-  font-size: 86px;
+  font-size: xxx-large;
+  text-align: center;
 }
 .main-slider .container p {
   font-size: 20px;
@@ -162,6 +164,46 @@
 .main-slider .container .main-button-container .view-detail-button:hover,
 .main-slider .container .main-button-container .rent-now-button:hover {
   transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .main-slider .container {
+    top: 30%;
+    right: 5%;
+    width: 90%;
+  }
+  .main-slider .container .premium {
+    font-size: 18px;
+  }
+  .main-slider .container .car-name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .main-slider .container .price {
+    display: inline;
+    margin-left: 20px;
+    font-size: 24px;
+  }
+  .main-slider .container .price .price-amount {
+    color: #e8ac3a;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  .main-slider .container .price .price-unit {
+    color: #fff;
+    font-size: 24px;
+  }
+  .main-slider .container h1 {
+    font-size: 55px;
+  }
+  .main-slider .container p {
+    font-size: 18px;
+  }
+  .main-slider .container .main-button-container .view-detail-button,
+  .main-slider .container .main-button-container .rent-now-button {
+    font-size: 15px;
+    padding: 10px 15px;
+  }
 }
 
 /*# sourceMappingURL=main-slider.css.map */

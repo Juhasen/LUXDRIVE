@@ -3,7 +3,7 @@ require_once '../controllers/constants.php';
 require_once '../controllers/database.php';
 session_start();
 
-
+$redirect_to_cart = $_SESSION['redirect'] ?? null;
 
 // Establish a database connection
 $conn = connectToDatabase();
@@ -23,14 +23,17 @@ $apartment = $_POST['apartment'] ?? '';
 $postal_code = $_POST['postal_code'] ?? '';
 $license_number = $_POST['license_number'] ?? '';
 
+
 // Validate input
 if (empty($name) || empty($surname) || empty($email) || empty($phone_number) || empty($password) || empty($confirm_password) || empty($country) || empty($city) || empty($street) || empty($apartment) || empty($postal_code) || empty($license_number)) {
-    die("<h1>All fields are required!</h1>");
+    header("Location: " . BASE_REDIRECT_URL . 'register&message=Wszystkie pola są wymagane!');
+    exit;
 }
 
 // Check if the passwords match
 if ($password !== $confirm_password) {
-    die("<h1>Passwords do not match!</h1>");
+    header("Location: " . BASE_REDIRECT_URL . 'register&message=Hasła nie są jednakowe!');
+    exit;
 }
 
 // Check if the email already exists
@@ -40,9 +43,9 @@ $stmt->execute();
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    echo "<h1>Email is already registered!</h1>";
     $stmt->close();
     $conn->close();
+    header("Location: " . BASE_REDIRECT_URL . 'register&message=Użytkownik o podanym adresie email już istnieje!');
     exit;
 }
 $stmt->close();
@@ -59,12 +62,18 @@ if ($stmt->execute()) {
     $_SESSION['user_name'] = $name;
     $_SESSION['user_email'] = $email;
 
-    // Redirect to the user profile page
-    header("Location: " . BASE_REDIRECT_URL . 'profile');
-    exit;
+    if($redirect_to_cart){
+        header("Location: " . $_SESSION['redirect']);
+    }
+    else {
+        header("Location: " . BASE_REDIRECT_URL . 'profile');
+    }
 } else {
-    echo "<h1>Registration failed. Please try again.</h1>";
+    header("Location: " . BASE_REDIRECT_URL . 'register?message=Rejestracja nie powiodła się!');
 }
-
 $stmt->close();
 closeConnection($conn);
+exit;
+
+
+

@@ -180,7 +180,6 @@
   color: #fff;
   min-width: 250px;
   height: 100%;
-  /* For smaller screens, stack the columns into one */
 }
 .edit-car-container .edit-form h1 {
   margin-bottom: 1rem;
@@ -229,8 +228,16 @@
   outline: none;
   border: 2px solid #f2a900;
 }
+
+/* For smaller screens, stack the columns into one */
 @media (max-width: 768px) {
-  .edit-car-container .edit-form form {
+  .edit-car-container {
+    flex-direction: column-reverse;
+  }
+  .edit-car-container .car-info .car-specs .car-details {
+    grid-template-columns: 1fr;
+  }
+  #edit-car-form {
     grid-template-columns: 1fr; /* Stack the columns into one */
   }
 }

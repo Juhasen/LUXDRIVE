@@ -105,3 +105,32 @@
   }
 
 }
+
+@media (max-width: 768px) {
+    .section-car-categories {
+        padding: 20px 10px;
+
+        .categories-title {
+        font-size: 2rem;
+        }
+
+        .categories-container {
+        flex-direction: column;
+        gap: 20px;
+
+        .category-card {
+            width: 100%;
+
+            h3 {
+            font-size: 1.5rem;
+            }
+
+            .arrow-button-container {
+            .arrow-button {
+                font-size: 1rem;
+            }
+            }
+        }
+        }
+    }
+}

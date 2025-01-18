@@ -7,6 +7,11 @@ if (isset($_SESSION['user_id'])) {
     header("Location: https://luxdrive.pl/public/index.php?page=profile");
     exit;
 }
+
+// check url for redirect parameter
+if (isset($_GET['redirect'])) {
+    $_SESSION['redirect'] = $_GET['redirect'];
+}
 ?>
 
 

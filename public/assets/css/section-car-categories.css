@@ -134,4 +134,26 @@
   background-color: rgb(231.7867272727, 171.2303636364, 56.1732727273);
 }
 
+@media (max-width: 768px) {
+  .section-car-categories {
+    padding: 20px 10px;
+  }
+  .section-car-categories .categories-title {
+    font-size: 2rem;
+  }
+  .section-car-categories .categories-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .section-car-categories .categories-container .category-card {
+    width: 100%;
+  }
+  .section-car-categories .categories-container .category-card h3 {
+    font-size: 1.5rem;
+  }
+  .section-car-categories .categories-container .category-card .arrow-button-container .arrow-button {
+    font-size: 1rem;
+  }
+}
+
 /*# sourceMappingURL=section-car-categories.css.map */

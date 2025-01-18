@@ -52,7 +52,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin-top: 20px;
   padding: 20px;
   color: #fff;
   width: 100%;
@@ -94,7 +93,7 @@
 }
 .profile-container .rentals .rentals-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 40px;
   justify-content: center;
   text-align: left;
@@ -127,7 +126,28 @@
 .profile-container .rentals .rentals-container .rental .rental-info span {
   font-weight: bold;
   color: #e8ac3a;
-  letter-spacing: 0;
+  letter-spacing: 1px;
+}
+@keyframes pulse-text {
+  0% {
+    color: #FFFF00; /* Initial color */
+  }
+  50% {
+    color: #e8ac3a; /* Midway color */
+  }
+  100% {
+    color: #FFFF00; /* Back to initial color */
+  }
+}
+.profile-container .rentals .rentals-container .rental .rental-info .pending-status {
+  animation: pulse-text 1.5s infinite; /* Apply pulsing animation */
+  font-weight: bold; /* Optional: Make the text stand out */
+}
+.profile-container .rentals .rentals-container .rental .rental-info .accepted-status {
+  color: green;
+}
+.profile-container .rentals .rentals-container .rental .rental-info .rejected-status {
+  color: #ff0000;
 }
 .profile-container .rentals .rentals-container .rental .rental-info .expired {
   position: relative;
@@ -227,6 +247,33 @@
   position: absolute;
   top: 120px;
   right: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-container {
+    padding: 15px;
+    margin-top: 30px;
+  }
+  .profile-container .rentals .rentals-container {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .profile-container .user-data .data-container {
+    gap: 10px;
+    padding: 10px;
+  }
+  .profile-container .user-data .data-container .labels,
+  .profile-container .user-data .data-container .values {
+    text-wrap: nowrap;
+    gap: 20px;
+  }
+  .profile-container .user-data .data-container .labels span,
+  .profile-container .user-data .data-container .values span {
+    text-overflow: ellipsis;
+  }
+  .logout-button {
+    top: 210px;
+    right: 10px;
+  }
 }
 
 /*# sourceMappingURL=profile.css.map */

@@ -166,7 +166,7 @@ $_SESSION['totalCost'] = $totalPrice;
         <img class="no-login-image" src="../public/assets/icons/car-white.svg" alt="white car"/>
         <h1>Proszę się zalogować, aby zobaczyć dokończyć rezerwację</h1>
         <button class="primary-button go-to-login-page"
-                onclick="window.location.href='https://luxdrive.pl/public/index.php?page=login'">Przejdź do logowania
+                onclick="window.location.href='https://luxdrive.pl/public/index.php?page=login&redirect=https://luxdrive.pl/public/index.php?page=cart'">Przejdź do logowania
         </button>
     <?php else: ?>
         <div class="payment-popup-content">

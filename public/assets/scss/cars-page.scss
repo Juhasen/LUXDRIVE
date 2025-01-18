@@ -1,6 +1,6 @@
 @use "utils" as *;
 
-.main-container {
+.cars-section {
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -233,3 +233,23 @@
   }
 }
 
+
+@media (max-width: 768px) {
+  .cars-section {
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .cars-container {
+    width: 100%;
+    margin-right: 0;
+  }
+}

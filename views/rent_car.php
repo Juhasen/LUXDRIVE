@@ -57,10 +57,6 @@ closeConnection($conn);
             </div>
         </div>
 
-        <div>
-            Uzupełnij niezbędne informacje
-        </div>
-
     </div>
         <section class="section-rent-now">
             <h2 class="h-rent-now">WYPOŻYCZ TERAZ</h2>

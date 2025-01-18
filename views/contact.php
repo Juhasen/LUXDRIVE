@@ -7,7 +7,7 @@
             <h3>Nasze Biuro</h3>
             <p>Adres: Piotrkowska 123, 90-001, Łódź</p>
             <p>Telefon: +48 692 187 092</p>
-            <p>Email: wsparcie@luxdrive.pl</p>
+            <p>Email: support@luxdrive.pl</p>
             <p>Godziny otwarcia: Poniedziałek - Piątek: 9:00 - 18:00</p>
         </div>
 

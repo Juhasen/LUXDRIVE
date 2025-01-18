@@ -5,11 +5,15 @@ if (isset($_SESSION['user_id'])) {
     header("Location: " . BASE_REDIRECT_URL . "profile");
     exit;
 }
+
 ?>
 
 <section class="login-container">
     <div class="login-background">
         <!-- Register Form -->
+        <?php if (isset($_GET['message'])): ?>
+            <p class="failure-message"><?php echo htmlspecialchars(trim($_GET['message'])); ?></p>
+        <?php endif; ?>
         <div class="form-container">
             <form action="../controllers/register.php" method="post">
                 <div class="form-row">

@@ -1,9 +1,6 @@
 @use "utils" as *;
 
 .main-container {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
 
   .cart {
     display: flex;
@@ -50,8 +47,6 @@
         }
 
         .cart-image-name-container {
-
-
           .car_name {
             color: $color-gold;
             letter-spacing: 2px;
@@ -345,4 +340,63 @@
   font-size: 16px;
   cursor: pointer;
   margin: 10px 0;
+}
+
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    .cart {
+      width: 100%;
+
+      .cart-container {
+        gap: 30px;
+        width: 100%;
+        padding: 0 10px;
+        margin-bottom: 30px;
+        justify-content: center;
+
+        .cart-elem {
+          flex-direction: column;
+          justify-content: center;
+          gap: 30px;
+
+          .cart-image-name-container {
+            .car_image {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .cart-details-container {
+            justify-content: center;
+            gap: 20px;
+            ul {
+              gap: 10px;
+              padding: 0;
+              strong {
+                font-size: 1.2rem;
+              }
+            }
+          }
+
+          .cart-price {
+            .price {
+              font-size: 1.8rem;
+            }
+
+            .primary-button {
+              font-size: x-large;
+            }
+          }
+
+          .cart-options {
+            label {
+              font-size: 1rem;
+            }
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
 }

@@ -119,7 +119,6 @@ $bar-width: 95%;
             gap: 15px;
             font-size: 1.2rem;
 
-            padding-right: 30px;
 
             .detail-icon {
               display: flex;
@@ -160,8 +159,67 @@ $bar-width: 95%;
         }
       }
     }
+
   }
-
-
 }
 
+@media (max-width: 768px) {
+  .section-cars {
+    padding: 0 10px;
+    gap: 0;
+
+    .section-header {
+      margin-bottom: 10px;
+
+      .section-description {
+        text-align: center;
+      }
+
+      .section-title {
+        text-align: center;
+      }
+    }
+
+    .slider-container {
+      gap: 20px;
+
+
+
+      .car-card {
+        margin: 0;
+
+        .car-info {
+          justify-content: center;
+          bottom: -10px;
+          .car-specs {
+            .car-name {
+              text-align: center;
+            }
+            .car-details {
+              flex-wrap: wrap;
+              justify-content: center;
+              .detail-icon {
+                font-size: medium;
+                img {
+                  width: 30px;
+                  height: 30px;
+                }
+              }
+            }
+          }
+
+          .car-price {
+
+            .price {
+              font-size: 1.5rem;
+
+              small {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
