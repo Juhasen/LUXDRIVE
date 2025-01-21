@@ -76,7 +76,7 @@ $result = get_filtered_cars($_GET);
                 <div class="filter-group">
                     <label for="price">Max Cena (zł)</label>
                     <input type="number" name="price" id="price" placeholder="Np. 5000" min="0"
-                           value="<?php echo isset($_GET['price']) ? htmlspecialchars($_GET['price']) : ''; ?>">
+                           value="<?php echo isset($_GET['price']) ? htmlspecialchars(trim($_GET['price'])) : ''; ?>">
                 </div>
                 <div class="filter-group">
                     <button type="submit" class="primary-button">Zastosuj filtry</button>
@@ -91,24 +91,24 @@ $result = get_filtered_cars($_GET);
                 while ($row = $result->fetch_assoc()) {
                     ?>
                     <div class="car-card">
-                        <img src="../public/assets/images/<?php echo htmlspecialchars($row['image']); ?>"
-                             alt="<?php echo htmlspecialchars($row['make']); ?>" class="car-image"/>
+                        <img src="../public/assets/images/<?php echo htmlspecialchars(trim($row['image'])); ?>"
+                             alt="<?php echo htmlspecialchars(trim($row['make'])); ?>" class="car-image"/>
                         <div class="car-info">
                             <div class="car-specs">
-                                <h2 class="car-name"><?php echo htmlspecialchars($row['make']) . ' ' . htmlspecialchars($row['model']); ?></h2>
+                                <h2 class="car-name"><?php echo htmlspecialchars(trim($row['make'])) . ' ' . htmlspecialchars(trim($row['model'])); ?></h2>
                                 <div class="car-details">
-                        <span class="detail-icon">
-                            <img src="../public/assets/icons/car-seat.png" alt="Seats"> <?php echo htmlspecialchars($row['seats']); ?>
-                        </span>
                                     <span class="detail-icon">
-                            <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> <?php echo htmlspecialchars($row['gearbox_type']); ?>
-                        </span>
-                                    <span class="detail-icon">
-                            <img src="../public/assets/icons/luggage.png" alt="Luggage"> <?php echo htmlspecialchars($row['luggage']); ?>
-                        </span>
-                                    <span class="detail-icon">
-                            <img src="../public/assets/icons/calendar.png" alt="Year"> <?php echo htmlspecialchars($row['year']); ?>
-                        </span>
+                                        <img src="../public/assets/icons/car-seat.png" alt="Seats"> <?php echo htmlspecialchars(trim($row['seats'])); ?>
+                                    </span>
+                                                        <span class="detail-icon">
+                                        <img src="../public/assets/icons/gearbox.png" alt="Gearbox"> <?php echo htmlspecialchars(trim($row['gearbox_type'])); ?>
+                                    </span>
+                                                        <span class="detail-icon">
+                                        <img src="../public/assets/icons/luggage.png" alt="Luggage"> <?php echo htmlspecialchars(trim($row['luggage'])); ?>
+                                    </span>
+                                                        <span class="detail-icon">
+                                        <img src="../public/assets/icons/calendar.png" alt="Year"> <?php echo htmlspecialchars(trim($row['year'])); ?>
+                                    </span>
                                 </div>
                             </div>
                             <div class="car-price">
@@ -120,6 +120,7 @@ $result = get_filtered_cars($_GET);
                             </div>
                         </div>
                     </div>
+
                     <?php
                 }
             } else {

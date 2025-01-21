@@ -90,28 +90,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-column">
                     <div class="form-group">
                         <label for="make">Marka:</label>
-                        <input type="text" id="make" name="make" value="<?php echo htmlspecialchars($car['make']); ?>"
+                        <input type="text" id="make" name="make" value="<?php echo htmlspecialchars(trim($car['make'])); ?>"
                                required>
                     </div>
                     <div class="form-group">
                         <label for="model">Model:</label>
                         <input type="text" id="model" name="model"
-                               value="<?php echo htmlspecialchars($car['model']); ?>" required>
+                               value="<?php echo htmlspecialchars(trim($car['model'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="year">Rok produkcji:</label>
-                        <input type="number" id="year" name="year" value="<?php echo htmlspecialchars($car['year']); ?>"
+                        <input type="number" id="year" name="year" value="<?php echo htmlspecialchars(trim($car['year'])); ?>"
                                required>
                     </div>
                     <div class="form-group">
                         <label for="price">Cena (za dzień):</label>
                         <input type="number" id="price" name="price" step="1"
-                               value="<?php echo htmlspecialchars($car['price']); ?>" required>
+                               value="<?php echo htmlspecialchars(trim($car['price'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="seats">Liczba miejsc:</label>
                         <input type="number" id="seats" name="seats"
-                               value="<?php echo htmlspecialchars($car['seats']); ?>" required>
+                               value="<?php echo htmlspecialchars(trim($car['seats'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="gearbox_type">Skrzynia biegów:</label>
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label for="luggage">Pojemność bagażnika:</label>
                         <input type="number" id="luggage" name="luggage"
-                               value="<?php echo htmlspecialchars($car['luggage']); ?>" required>
+                               value="<?php echo htmlspecialchars(trim($car['luggage'])); ?>" required>
                     </div>
                 </div>
 
@@ -145,11 +145,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label for="odometer">Przebieg:</label>
                         <input type="number" id="odometer" name="odometer"
-                               value="<?php echo htmlspecialchars($car['odometer']); ?>" required>
+                               value="<?php echo htmlspecialchars(trim($car['odometer'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="vin">VIN:</label>
-                        <input type="text" id="vin" name="vin" value="<?php echo htmlspecialchars($car['vin']); ?>"
+                        <input type="text" id="vin" name="vin" value="<?php echo htmlspecialchars(trim($car['vin'])); ?>"
                                required>
                     </div>
                     <div class="form-group">
@@ -169,12 +169,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group">
                         <label for="last_service">Ostatni serwis:</label>
                         <input type="date" id="last_service" name="last_service"
-                               value="<?php echo htmlspecialchars($car['last_service']); ?>" required>
+                               value="<?php echo htmlspecialchars(trim($car['last_service'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="license_plate">Numer rejestracyjny:</label>
                         <input type="text" id="license_plate" name="license_plate"
-                               value="<?php echo htmlspecialchars($car['license_plate']); ?>" required>
+                               value="<?php echo htmlspecialchars(trim($car['license_plate'])); ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="car_image">Zdjęcie samochodu(jeśli chcesz zamienić):</label>
@@ -188,84 +188,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Original Car Info -->
         <div class="car-info-container">
             <h2 class="car-info-header">Obecne dane samochodu</h2>
-            <div class="car-image">
-                <img id="car-image" src="../public/assets/images/<?php echo htmlspecialchars($car['image']); ?>"
-                     alt="Zdjęcie samochodu">
+            <div class="car-image-container">
+                <img src="../public/assets/images/<?php echo htmlspecialchars(trim($car['image'])); ?>" alt="Car Image">
             </div>
-            <div class="car-info">
-                <div class="car-specs">
-                    <h3 id="car-name" class="car-name">
-                        <?php echo htmlspecialchars($car['make']) . ' ' . htmlspecialchars($car['model']); ?>
-                    </h3>
-                    <div class="car-details">
-                        <p><strong>Rok produkcji:</strong> <?php echo htmlspecialchars($car['year']); ?></p>
-                        <p><strong>Cena (za dzień):</strong> <?php echo number_format($car['price'], 0); ?> zł</p>
-                        <p><strong>Liczba miejsc:</strong> <?php echo htmlspecialchars($car['seats']); ?></p>
-                        <p><strong>Skrzynia biegów:</strong> <?php echo htmlspecialchars($car['gearbox_type']); ?></p>
-                        <p><strong>Pojemność bagażnika:</strong> <?php echo htmlspecialchars($car['luggage']); ?></p>
-                        <p><strong>Przebieg:</strong> <?php echo htmlspecialchars($car['odometer']); ?> km</p>
-                        <p><strong>VIN:</strong> <?php echo htmlspecialchars($car['vin']); ?></p>
-                        <p><strong>Lokalizacja:</strong> <?php echo htmlspecialchars($car['location']); ?></p>
-                        <p><strong>Ostatnia usługa:</strong> <?php echo htmlspecialchars($car['last_service']); ?></p>
-                        <p><strong>Numer rejestracyjny:</strong> <?php echo htmlspecialchars($car['license_plate']); ?>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <ul class="car-info-list">
+                <li><strong>Marka:</strong> <?php echo htmlspecialchars(trim($car['make'])); ?></li>
+                <li><strong>Model:</strong> <?php echo htmlspecialchars(trim($car['model'])); ?></li>
+                <li><strong>Rok produkcji:</strong> <?php echo htmlspecialchars(trim($car['year'])); ?></li>
+                <li><strong>Cena:</strong> <?php echo htmlspecialchars(trim($car['price'])); ?> zł dziennie</li>
+                <li><strong>Liczba miejsc:</strong> <?php echo htmlspecialchars(trim($car['seats'])); ?></li>
+                <li><strong>Skrzynia biegów:</strong> <?php echo htmlspecialchars(trim($car['gearbox_type'])); ?></li>
+                <li><strong>Pojemność bagażnika:</strong> <?php echo htmlspecialchars(trim($car['luggage'])); ?> l</li>
+                <li><strong>Typ:</strong> <?php echo htmlspecialchars(trim($car['type'])); ?></li>
+                <li><strong>Przebieg:</strong> <?php echo htmlspecialchars(trim($car['odometer'])); ?> km</li>
+                <li><strong>VIN:</strong> <?php echo htmlspecialchars(trim($car['vin'])); ?></li>
+                <li><strong>Lokalizacja:</strong> <?php echo htmlspecialchars(trim($car['location'])); ?></li>
+                <li><strong>Ostatni serwis:</strong> <?php echo htmlspecialchars(trim($car['last_service'])); ?></li>
+                <li><strong>Numer rejestracyjny:</strong> <?php echo htmlspecialchars(trim($car['license_plate'])); ?></li>
+            </ul>
         </div>
-
-
     </div>
-
-
 </section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Select form elements
-        const makeInput = document.getElementById('make');
-        const modelInput = document.getElementById('model');
-        const yearInput = document.getElementById('year');
-        const priceInput = document.getElementById('price');
-        const seatsInput = document.getElementById('seats');
-        const gearboxInput = document.getElementById('gearbox_type');
-        const luggageInput = document.getElementById('luggage');
-
-        // Select elements to display updates
-        const updatedCarName = document.getElementById('updated-car-name');
-        const updatedCarSeats = document.getElementById('updated-car-seats');
-        const updatedCarGearbox = document.getElementById('updated-car-gearbox');
-        const updatedCarLuggage = document.getElementById('updated-car-luggage');
-        const updatedCarYear = document.getElementById('updated-car-year');
-        const updatedCarPrice = document.getElementById('updated-car-price');
-
-        // Update the updated car details in real-time as the user types
-        makeInput.addEventListener('input', function () {
-            updatedCarName.textContent = `${makeInput.value} ${modelInput.value}`;
-        });
-
-        modelInput.addEventListener('input', function () {
-            updatedCarName.textContent = `${makeInput.value} ${modelInput.value}`;
-        });
-
-        yearInput.addEventListener('input', function () {
-            updatedCarYear.textContent = yearInput.value;
-        });
-
-        priceInput.addEventListener('input', function () {
-            updatedCarPrice.textContent = `${priceInput.value}`;
-        });
-
-        seatsInput.addEventListener('input', function () {
-            updatedCarSeats.textContent = seatsInput.value;
-        });
-
-        gearboxInput.addEventListener('change', function () {
-            updatedCarGearbox.textContent = gearboxInput.value;
-        });
-
-        luggageInput.addEventListener('input', function () {
-            updatedCarLuggage.textContent = luggageInput.value;
-        });
-    });
-</script>

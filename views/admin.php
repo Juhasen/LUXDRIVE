@@ -30,8 +30,9 @@ if (!empty($_GET['message'])) {
 
 
 
-<section class="main-container">
-    <div class="cars-section">
+<section class="main-container-admin">
+
+    <div class="admin-buttons-header">
         <h1 class="admin-heading">Panel Administratora</h1>
         <div class="admin-buttons-container">
             <button class="secondary-button" onclick="window.location.href='../public/index.php?page=add_car';">DODAJ NOWY
@@ -45,6 +46,8 @@ if (!empty($_GET['message'])) {
         <form action="../controllers/logout.php" method="POST">
             <button type="submit" class="logout-button primary-button">Wyloguj</button>
         </form>
+    </div>
+    <div class="cars-section">
 
         <div class="row">
             <!-- SIDEBAR -->
